@@ -4,7 +4,7 @@
 
 <!-- Animated Typing -->
 <a href="https://git.io/typing-svg">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1000&color=00D4FF&center=true&vCenter=true&multiline=false&repeat=true&width=860&height=35&lines=Head+of+Technology+%40+RoboStore;Robotics+Systems+Engineer+%26+Integrator;Unitree+G1+%7C+Go2+%7C+B2+—+Hardware+to+Full+Stack;ROS2+%7C+Teleoperation+%7C+Edge+AI+%7C+Autonomy;Enterprise+Robotics+Deployment+%26+Field+Support;Embodied+AI+%7C+VR+Control+%7C+Cloud+Robotics+Infrastructure" alt="Typing SVG"/>
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1000&color=00D4FF&center=true&vCenter=true&multiline=false&repeat=true&width=860&height=35&lines=Head+of+Technology+%40+RoboStore;Robotics+Systems+Engineer+%26+Integrator;Unitree+G1+%7C+Go2+%7C+B2+%E2%80%94+Hardware+to+Full+Stack;ROS2+%7C+Teleoperation+%7C+Edge+AI+%7C+Autonomy;Enterprise+Robotics+Deployment+%26+Field+Support;Embodied+AI+%7C+VR+Control+%7C+Cloud+Robotics+Infrastructure" alt="Typing SVG"/>
 </a>
 
 <br/><br/>
@@ -353,10 +353,10 @@ Cloud & DevOps ─────────────────────�
 <div align="center">
 
 <a href="https://github.com/szwedk?tab=repositories">
-  <img src="https://github-readme-stats-one-bice.vercel.app/api?username=szwedk&theme=tokyonight&show_icons=true&count_private=true&hide_border=true&role=OWNER,ORGANIZATION_MEMBER,COLLABORATOR" width="49%" alt="GitHub Stats"/>
+  <img src="https://github-readme-stats.vercel.app/api?username=szwedk&theme=tokyonight&show_icons=true&count_private=true&hide_border=true" width="49%" alt="GitHub Stats"/>
 </a>
 <a href="https://github.com/szwedk?tab=repositories">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=szwedk&theme=tokyonight&hide_border=true" width="49%" alt="GitHub Streak"/>
+  <img src="https://streak-stats.demolab.com/?user=szwedk&theme=tokyonight&hide_border=true" width="49%" alt="GitHub Streak"/>
 </a>
 
 <br/>
