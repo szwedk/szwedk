@@ -1,0 +1,412 @@
+<!-- Header Banner -->
+<div align="center">
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Kamil%20Szwed&fontSize=54&fontColor=fff&animation=twinkling&fontAlignY=35&desc=Head%20of%20Technology%20%40%20RoboStore%20%7C%20Robotics%20Systems%20Engineer&descSize=18&descAlignY=55&descColor=58A6FF"/>
+
+<!-- Animated Typing -->
+<a href="https://git.io/typing-svg">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1000&color=00D4FF&center=true&vCenter=true&multiline=false&repeat=true&width=860&height=35&lines=Head+of+Technology+%40+RoboStore;Robotics+Systems+Engineer+%26+Integrator;Unitree+G1+%7C+Go2+%7C+B2+—+Hardware+to+Full+Stack;ROS2+%7C+Teleoperation+%7C+Edge+AI+%7C+Autonomy;Enterprise+Robotics+Deployment+%26+Field+Support;Embodied+AI+%7C+VR+Control+%7C+Cloud+Robotics+Infrastructure" alt="Typing SVG"/>
+</a>
+
+<br/><br/>
+
+<!-- Social Badges -->
+<p>
+  <a href="https://www.linkedin.com/in/kamil-szwed">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
+  </a>
+  <a href="https://robostore.com">
+    <img src="https://img.shields.io/badge/RoboStore-FF6F00?style=for-the-badge&logo=robot-framework&logoColor=white" alt="RoboStore"/>
+  </a>
+  <a href="mailto:kamil@robostore.com">
+    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/>
+  </a>
+  <a href="https://github.com/szwedk">
+    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/>
+  </a>
+  <img src="https://komarev.com/ghpvc/?username=szwedk&label=Profile%20Views&color=00d4ff&style=for-the-badge" alt="Profile Views"/>
+</p>
+
+</div>
+
+---
+
+## About
+
+> **Head of Technology at [RoboStore](https://robostore.com)** — Robotics systems engineer and enterprise integrator deploying humanoid robots, quadrupeds, and autonomous platforms in production. Deep expertise in **ROS2**, **teleoperation**, **VR robotics**, **edge AI**, and **cloud-connected robotics infrastructure**. Operating at the boundary of hardware, software, and real-world field deployment.
+
+- **Head of Technology** at **[RoboStore](https://robostore.com)** — leading robotics stack development, enterprise integrations, and field deployments of humanoid and quadruped platforms
+- Building and deploying **Unitree G1 / Go2 / B2** — from low-level SDK2 control to full autonomy, teleoperation, and enterprise configuration pipelines
+- Developing **whole-body teleoperation systems** — VR-based humanoid control via **WebRTC**, Pico, Quest, and Apple Vision Pro
+- Building **autonomous patrol and security robotics** — SLAM navigation, LiDAR integration, edge AI inference on Jetson Orin
+- Systems integration across **ROS2**, **CycloneDDS**, **Docker**, **AWS**, and **RUTM50** 5G networking for production-grade deployments
+- Working with **Inspire Hands** and **BrainCo** dexterous manipulation systems on G1 humanoid platforms
+- Custom robotics tooling — **ESP32 firmware**, **3D printed accessories**, sensor integration, hardware/software co-design
+- Open to collaborations in **Enterprise Autonomy**, **Humanoid Deployment**, **VR Teleoperation**, **Embodied AI**
+
+---
+
+## Current Work
+
+| Domain | Focus |
+|:-------|:------|
+| **Humanoid Deployment** | G1 — SDK2, ROS2, whole-body control, enterprise commissioning, Inspire Hands integration |
+| **Teleoperation Systems** | VR whole-body teleop via WebRTC — Pico / Quest / Apple Vision Pro pipeline |
+| **Autonomous Patrol** | Go2 / B2 — SLAM, LiDAR mapping, edge AI inference, security robotics |
+| **Enterprise Integration** | Dockerized ROS2 stacks, cloud robotics workflows, fleet management |
+| **Embodied AI Tooling** | On-robot inference, Jetson Orin deployment, vision-language integration |
+| **Robotics Infrastructure** | CycloneDDS tuning, MQTT telemetry bridge, AWS cloud sync, OTA pipelines |
+
+---
+
+## Robotics Stack
+
+<div align="center">
+
+<table>
+  <tr>
+    <td align="center" width="96">
+      <img src="https://skillicons.dev/icons?i=ros" width="48" height="48" alt="ROS2"/>
+      <br><b>ROS2</b>
+    </td>
+    <td align="center" width="96">
+      <a href="#"><img src="https://techstack-generator.vercel.app/python-icon.svg" alt="Python" width="65" height="65"/></a>
+      <br><b>Python</b>
+    </td>
+    <td align="center" width="96">
+      <img src="https://techstack-generator.vercel.app/cpp-icon.svg" alt="C++" width="65" height="65"/>
+      <br><b>C++</b>
+    </td>
+    <td align="center" width="96">
+      <img src="https://techstack-generator.vercel.app/docker-icon.svg" alt="Docker" width="65" height="65"/>
+      <br><b>Docker</b>
+    </td>
+    <td align="center" width="96">
+      <img src="https://techstack-generator.vercel.app/aws-icon.svg" alt="AWS" width="65" height="65"/>
+      <br><b>AWS</b>
+    </td>
+    <td align="center" width="96">
+      <img src="https://skillicons.dev/icons?i=linux" width="48" height="48" alt="Linux"/>
+      <br><b>Linux</b>
+    </td>
+    <td align="center" width="96">
+      <img src="https://skillicons.dev/icons?i=opencv" width="48" height="48" alt="OpenCV"/>
+      <br><b>OpenCV</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="96">
+      <img src="https://img.shields.io/badge/Isaac%20Sim-76B900?style=flat-square&logo=nvidia&logoColor=white" height="32" alt="Isaac Sim"/>
+      <br><b>Isaac Sim</b>
+    </td>
+    <td align="center" width="96">
+      <img src="https://img.shields.io/badge/Jetson-76B900?style=flat-square&logo=nvidia&logoColor=white" height="32" alt="Jetson Orin"/>
+      <br><b>Jetson Orin</b>
+    </td>
+    <td align="center" width="96">
+      <img src="https://skillicons.dev/icons?i=unity" width="48" height="48" alt="Unity"/>
+      <br><b>Unity</b>
+    </td>
+    <td align="center" width="96">
+      <img src="https://skillicons.dev/icons?i=raspberrypi" width="48" height="48" alt="RPi"/>
+      <br><b>Raspberry Pi</b>
+    </td>
+    <td align="center" width="96">
+      <img src="https://skillicons.dev/icons?i=arduino" width="48" height="48" alt="ESP32"/>
+      <br><b>ESP32</b>
+    </td>
+    <td align="center" width="96">
+      <img src="https://skillicons.dev/icons?i=bash" width="48" height="48" alt="Bash"/>
+      <br><b>Bash</b>
+    </td>
+    <td align="center" width="96">
+      <img src="https://techstack-generator.vercel.app/github-icon.svg" alt="GitHub" width="65" height="65"/>
+      <br><b>GitHub</b>
+    </td>
+  </tr>
+</table>
+
+</div>
+
+---
+
+## Hardware Platforms
+
+<div align="center">
+
+| Platform | Type | Integration Stack |
+|:---------|:-----|:-----------------|
+| **Unitree G1** | Humanoid Robot | SDK2 · ROS2 · CycloneDDS · Inspire Hands · BrainCo · Whole-Body Control |
+| **Unitree Go2** | Quadruped | Go2 SDK · ROS2 · Nav2 · LiDAR · SLAM · Autonomous Patrol |
+| **Unitree B2** | Industrial Quadruped | B2 SDK · ROS2 · Enterprise Payloads · Security Robotics |
+| **Inspire Hands** | Dexterous End Effectors | SDK · Force Sensing · G1 Integration · Manipulation |
+| **BrainCo** | Neural Interface / Hands | SDK · Biometric Sensing · Humanoid Integration |
+| **Jetson Orin** | Edge Compute Module | JetPack · ROS2 · Docker · AI Inference · SLAM |
+| **LattePanda** | x86 Edge SBC | Linux · ROS2 · Lightweight Robotics Control |
+| **RUTM50** | Industrial 5G Router | 5G · Mesh Networking · Low-Latency Robot Connectivity |
+
+</div>
+
+---
+
+## Software & Frameworks
+
+<div align="center">
+
+**Robotics & Autonomy**
+
+![ROS2](https://img.shields.io/badge/ROS2-22314E?style=flat-square&logo=ros&logoColor=white)
+![CycloneDDS](https://img.shields.io/badge/CycloneDDS-003366?style=flat-square&logoColor=white)
+![Nav2](https://img.shields.io/badge/Nav2-22314E?style=flat-square&logo=ros&logoColor=white)
+![SLAM](https://img.shields.io/badge/SLAM-005F73?style=flat-square&logoColor=white)
+![LiDAR](https://img.shields.io/badge/LiDAR-0A9396?style=flat-square&logoColor=white)
+![Unitree SDK2](https://img.shields.io/badge/Unitree%20SDK2-FF6F00?style=flat-square&logoColor=white)
+
+**Simulation**
+
+![Isaac Sim](https://img.shields.io/badge/Isaac%20Sim-76B900?style=flat-square&logo=nvidia&logoColor=white)
+![Isaac Lab](https://img.shields.io/badge/Isaac%20Lab-76B900?style=flat-square&logo=nvidia&logoColor=white)
+![MuJoCo](https://img.shields.io/badge/MuJoCo-4285F4?style=flat-square&logoColor=white)
+
+**Teleoperation & VR**
+
+![WebRTC](https://img.shields.io/badge/WebRTC-333333?style=flat-square&logo=webrtc&logoColor=white)
+![Unity](https://img.shields.io/badge/Unity-000000?style=flat-square&logo=unity&logoColor=white)
+![Pico VR](https://img.shields.io/badge/Pico%20VR-000000?style=flat-square&logoColor=white)
+![Meta Quest](https://img.shields.io/badge/Meta%20Quest-1877F2?style=flat-square&logo=meta&logoColor=white)
+![Apple Vision Pro](https://img.shields.io/badge/Apple%20Vision%20Pro-000000?style=flat-square&logo=apple&logoColor=white)
+
+**Infrastructure & Cloud**
+
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazon-aws&logoColor=white)
+![MQTT](https://img.shields.io/badge/MQTT-660066?style=flat-square&logo=mqtt&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
+![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=flat-square&logo=ubuntu&logoColor=white)
+
+**Vision, AI & Compute**
+
+![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=flat-square&logo=opencv&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![C++](https://img.shields.io/badge/C++-00599C?style=flat-square&logo=c%2B%2B&logoColor=white)
+
+</div>
+
+---
+
+## Currently Building
+
+<table>
+  <tr>
+    <td width="50%">
+      <h3 align="center">Whole-Body Teleoperation</h3>
+      <p align="center">VR-based full-body humanoid control — Pico / Quest / Apple Vision Pro with WebRTC low-latency streaming and G1 motor command bridge</p>
+      <p align="center">
+        <img src="https://img.shields.io/badge/WebRTC-Active-00D4FF?style=flat-square"/>
+        <img src="https://img.shields.io/badge/Unitree%20G1-FF6F00?style=flat-square"/>
+        <img src="https://img.shields.io/badge/ROS2-22314E?style=flat-square&logo=ros&logoColor=white"/>
+      </p>
+    </td>
+    <td width="50%">
+      <h3 align="center">Autonomous Patrol Robots</h3>
+      <p align="center">Go2 / B2 security robotics — SLAM navigation, LiDAR environmental mapping, edge AI object detection, enterprise fleet deployment</p>
+      <p align="center">
+        <img src="https://img.shields.io/badge/SLAM-Active-005F73?style=flat-square"/>
+        <img src="https://img.shields.io/badge/Unitree%20B2%2FGo2-FF6F00?style=flat-square"/>
+        <img src="https://img.shields.io/badge/Nav2-22314E?style=flat-square&logo=ros&logoColor=white"/>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h3 align="center">Humanoid Robotics Infrastructure</h3>
+      <p align="center">Production-grade ROS2 deployment frameworks — Dockerized stacks, CycloneDDS tuning, multi-robot networking and fleet orchestration</p>
+      <p align="center">
+        <img src="https://img.shields.io/badge/ROS2-Active-22314E?style=flat-square&logo=ros&logoColor=white"/>
+        <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white"/>
+        <img src="https://img.shields.io/badge/CycloneDDS-003366?style=flat-square"/>
+      </p>
+    </td>
+    <td width="50%">
+      <h3 align="center">Enterprise Robotics Deployments</h3>
+      <p align="center">End-to-end enterprise integration — hardware commissioning, robotics stack deployment, cloud workflows, and field support</p>
+      <p align="center">
+        <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazon-aws&logoColor=white"/>
+        <img src="https://img.shields.io/badge/MQTT-660066?style=flat-square&logo=mqtt&logoColor=white"/>
+        <img src="https://img.shields.io/badge/Enterprise-Active-00D4FF?style=flat-square"/>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h3 align="center">Embodied AI Tooling</h3>
+      <p align="center">On-robot AI inference pipelines — Jetson Orin edge deployment, OpenCV vision, real-time perception and decision-making stacks</p>
+      <p align="center">
+        <img src="https://img.shields.io/badge/Jetson%20Orin-76B900?style=flat-square&logo=nvidia&logoColor=white"/>
+        <img src="https://img.shields.io/badge/Edge%20AI-Active-76B900?style=flat-square"/>
+        <img src="https://img.shields.io/badge/OpenCV-5C3EE8?style=flat-square&logo=opencv&logoColor=white"/>
+      </p>
+    </td>
+    <td width="50%">
+      <h3 align="center">Cloud Robotics Workflows</h3>
+      <p align="center">AWS-integrated robotics infrastructure — telemetry pipelines, OTA update systems, remote monitoring, and multi-site fleet management</p>
+      <p align="center">
+        <img src="https://img.shields.io/badge/AWS-Active-232F3E?style=flat-square&logo=amazon-aws&logoColor=white"/>
+        <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white"/>
+        <img src="https://img.shields.io/badge/MQTT-Active-660066?style=flat-square"/>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h3 align="center">VR Teleoperation Systems</h3>
+      <p align="center">Unity-based VR robotics interfaces — bimanual control, immersive operator displays, latency-optimized streaming for real-world robot operation</p>
+      <p align="center">
+        <img src="https://img.shields.io/badge/Unity-000000?style=flat-square&logo=unity&logoColor=white"/>
+        <img src="https://img.shields.io/badge/Pico%20%2F%20Quest-1877F2?style=flat-square&logo=meta&logoColor=white"/>
+        <img src="https://img.shields.io/badge/WebRTC-333333?style=flat-square&logo=webrtc&logoColor=white"/>
+      </p>
+    </td>
+    <td width="50%">
+      <h3 align="center">Dockerized Robotics Deployment</h3>
+      <p align="center">Containerized ROS2 environments — reproducible builds, cross-platform deployment, CI/CD pipelines for robotics software at scale</p>
+      <p align="center">
+        <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white"/>
+        <img src="https://img.shields.io/badge/ROS2-22314E?style=flat-square&logo=ros&logoColor=white"/>
+        <img src="https://img.shields.io/badge/Ubuntu-E95420?style=flat-square&logo=ubuntu&logoColor=white"/>
+      </p>
+    </td>
+  </tr>
+</table>
+
+---
+
+## Enterprise & Field Deployments
+
+> Deploying production robotics systems for enterprise clients across security, industrial, and research sectors.
+
+- **Security robotics** — Autonomous patrol deployments with Go2 / B2, LiDAR-based situational awareness, cloud telemetry pipelines
+- **Humanoid integration** — G1 enterprise deployments, custom payload configurations, field commissioning and operator training
+- **Robotics networking** — Low-latency 5G mesh with RUTM50, CycloneDDS multi-robot DDS coordination
+- **Dockerized deployment pipelines** — Containerized ROS2 stacks, reproducible builds, remote configuration management
+- **Cloud robotics infrastructure** — AWS-integrated fleet management, MQTT telemetry bridges, OTA firmware delivery
+- **Hardware/software integration** — Custom 3D printed accessories and mounts, ESP32 peripheral firmware, sensor integration and calibration
+- **Industrial robotics workflows** — G1/Go2/B2 integration into industrial environments, safety system design, enterprise SOPs
+
+---
+
+## Research & Interests
+
+<div align="center">
+
+![Embodied AI](https://img.shields.io/badge/Embodied%20AI-6C63FF?style=flat-square&logoColor=white)
+![Whole-Body Control](https://img.shields.io/badge/Whole--Body%20Control-FF6F00?style=flat-square&logoColor=white)
+![Teleoperation](https://img.shields.io/badge/Teleoperation-00D4FF?style=flat-square&logoColor=black)
+![Human-Robot Interaction](https://img.shields.io/badge/Human--Robot%20Interaction-22314E?style=flat-square&logoColor=white)
+![Dexterous Manipulation](https://img.shields.io/badge/Dexterous%20Manipulation-005F73?style=flat-square&logoColor=white)
+![Autonomous Navigation](https://img.shields.io/badge/Autonomous%20Navigation-0A9396?style=flat-square&logoColor=white)
+![SLAM](https://img.shields.io/badge/SLAM-1B4332?style=flat-square&logoColor=white)
+![Edge AI](https://img.shields.io/badge/Edge%20AI-76B900?style=flat-square&logoColor=white)
+![VR Robotics](https://img.shields.io/badge/VR%20Robotics-1877F2?style=flat-square&logoColor=white)
+![Robotics Networking](https://img.shields.io/badge/Robotics%20Networking-2496ED?style=flat-square&logoColor=white)
+![Sim2Real](https://img.shields.io/badge/Sim2Real-4285F4?style=flat-square&logoColor=white)
+![Field Robotics](https://img.shields.io/badge/Field%20Robotics-6C757D?style=flat-square&logoColor=white)
+![Security Robotics](https://img.shields.io/badge/Security%20Robotics-DC3545?style=flat-square&logoColor=white)
+![Industrial Integration](https://img.shields.io/badge/Industrial%20Integration-343A40?style=flat-square&logoColor=white)
+
+</div>
+
+---
+
+## Infrastructure
+
+```
+Robotics Stack ──────────────────────────────────────────────────────────
+  ROS2 (Humble / Iron)
+  ├── CycloneDDS  ──  DDS middleware, multi-robot coordination
+  ├── Nav2        ──  Autonomous navigation, path planning
+  ├── ros2_control  ──  Hardware interface abstraction
+  └── Custom nodes, bridges, and launch infrastructure
+
+Compute ─────────────────────────────────────────────────────────────────
+  NVIDIA Jetson Orin  ──  Edge AI inference, on-robot ROS2 node execution
+  LattePanda          ──  x86 robot compute, lightweight stacks
+  ESP32               ──  Peripheral firmware, MQTT sensors, GPIO control
+  Raspberry Pi        ──  Robot SBC, vision pipelines, sensor hubs
+
+Networking ──────────────────────────────────────────────────────────────
+  RUTM50 (5G industrial router)  ──  Low-latency field connectivity
+  MQTT broker                    ──  Robot telemetry and command bus
+  WebRTC                         ──  Teleoperation video/data streaming
+  CycloneDDS                     ──  ROS2 DDS transport layer
+
+Cloud & DevOps ──────────────────────────────────────────────────────────
+  Docker          ──  Containerized ROS2 stacks, portable deployment
+  AWS             ──  Fleet telemetry, OTA delivery, cloud sync
+  GitHub Actions  ──  CI/CD for robotics software pipelines
+  Ubuntu 22.04    ──  Primary deployment OS
+```
+
+---
+
+## GitHub Stats
+
+<div align="center">
+
+<a href="https://github.com/szwedk?tab=repositories">
+  <img src="https://github-readme-stats-one-bice.vercel.app/api?username=szwedk&theme=tokyonight&show_icons=true&count_private=true&hide_border=true&role=OWNER,ORGANIZATION_MEMBER,COLLABORATOR" width="49%" alt="GitHub Stats"/>
+</a>
+<a href="https://github.com/szwedk?tab=repositories">
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=szwedk&theme=tokyonight&hide_border=true" width="49%" alt="GitHub Streak"/>
+</a>
+
+<br/>
+
+<a href="https://github.com/szwedk?tab=repositories">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=szwedk&theme=tokyo-night&hide_border=true&area=true&custom_title=Contribution%20Graph%20—%20All%20Repositories" width="98%" alt="Activity Graph"/>
+</a>
+
+<br/>
+
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=szwedk&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true&layout=compact&langs_count=10" width="40%" alt="Top Languages"/>
+
+</div>
+
+---
+
+<div align="center">
+
+<!-- GitHub Snake Contribution Animation -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/szwedk/szwedk/output/github-snake-dark.svg"/>
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/szwedk/szwedk/output/github-snake.svg"/>
+  <img alt="contribution snake" src="https://raw.githubusercontent.com/szwedk/szwedk/output/github-snake-dark.svg"/>
+</picture>
+
+</div>
+
+---
+
+<div align="center">
+
+### Connect
+
+<p><i>Building enterprise robotics infrastructure — from humanoid deployment to autonomous field operations.<br/>
+Available for collaborations in robotics systems integration, teleoperation, enterprise autonomy, and embodied AI.</i></p>
+
+<a href="https://www.linkedin.com/in/kamil-szwed">
+  <img src="https://img.shields.io/badge/-LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
+</a>
+<a href="https://robostore.com">
+  <img src="https://img.shields.io/badge/-RoboStore-FF6F00?style=for-the-badge&logo=robot-framework&logoColor=white" alt="RoboStore"/>
+</a>
+<a href="mailto:kamil@robostore.com">
+  <img src="https://img.shields.io/badge/-Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/>
+</a>
+<a href="https://github.com/szwedk">
+  <img src="https://img.shields.io/badge/-GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/>
+</a>
+
+</div>
+
+<!-- Footer Banner -->
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer"/>
