@@ -11,7 +11,7 @@
 
 <!-- Social Badges -->
 <p>
-  <a href="https://www.linkedin.com/in/kamil-szwed">
+  <a href="https://www.linkedin.com/in/kamilszwed006">
     <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
   </a>
   <a href="https://robostore.com">
@@ -393,7 +393,7 @@ Cloud & DevOps ─────────────────────�
 <p><i>Building enterprise robotics infrastructure — from humanoid deployment to autonomous field operations.<br/>
 Available for collaborations in robotics systems integration, teleoperation, enterprise autonomy, and embodied AI.</i></p>
 
-<a href="https://www.linkedin.com/in/kamil-szwed">
+<a href="https://www.linkedin.com/in/kamilszwed006">
   <img src="https://img.shields.io/badge/-LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
 </a>
 <a href="https://robostore.com">
