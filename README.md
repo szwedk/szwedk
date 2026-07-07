@@ -39,14 +39,6 @@
 ---
 <!-- CONTRIB:END -->
 
-<!-- STATS:START -->
-<div align="center">
-  <img height="170" src="https://github-readme-stats.vercel.app/api?username=szwedk&show_icons=true&hide_border=true&include_all_commits=true&count_private=true&title_color=58A6FF&icon_color=00D4FF&text_color=c9d1d9&bg_color=0D1117" alt="Kamil Szwed's GitHub stats"/>
-</div>
-
----
-<!-- STATS:END -->
-
 ## About
 
 > **Head of Technology at [RoboStore](https://robostore.com)** — Robotics systems engineer and enterprise integrator deploying humanoid robots, quadrupeds, and autonomous platforms in production. Deep expertise in **ROS2**, **teleoperation**, **VR robotics**, **edge AI**, and **cloud-connected robotics infrastructure**. Operating at the boundary of hardware, software, and real-world field deployment.
