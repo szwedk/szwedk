@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kamil Szwed — Robotics in Motion</title>
-  <meta name="description" content="Kamil Szwed — Head of Technology at RoboStore. Deploying humanoid and quadruped robots in production: ROS2, VR teleoperation, edge AI, enterprise autonomy." />
+  <meta name="description" content="Kamil Szwed — Head of Technology at Unitree-RoboStore. Deploying humanoid and quadruped robots in production: ROS2, VR teleoperation, edge AI, enterprise autonomy." />
   <meta property="og:title" content="Kamil Szwed — Robotics in Motion" />
-  <meta property="og:description" content="Head of Technology at RoboStore. Humanoids, quadrupeds, and the systems that ship them." />
+  <meta property="og:description" content="Head of Technology at Unitree-RoboStore. Humanoids, quadrupeds, and the systems that ship them." />
   <meta property="og:image" content="assets/portrait.jpg" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="preload" href="fonts/InterTight-var.woff2" as="font" type="font/woff2" crossorigin />
@@ -36,7 +36,7 @@
 
   <div class="rail rail-top-right" aria-hidden="true">
     <p>ROS2 &middot; TELEOP &middot; EDGE AI</p>
-    <p>USA &middot; WORLDWIDE</p>
+    <p>NEW YORK &middot; WORLDWIDE</p>
   </div>
 
   <div class="rail rail-mid-right">
@@ -62,7 +62,7 @@
         <div class="hero-copy">
           <div class="hero-headlines">
             <div class="hero-headline is-current" data-headline="0">
-              <p class="eyebrow"><span>ROBOSTORE &middot; HEAD OF TECHNOLOGY</span></p>
+              <p class="eyebrow"><span>UNITREE-ROBOSTORE &middot; HEAD OF TECHNOLOGY</span></p>
               <h1>Building robots<br />that <em>move.</em></h1>
               <p class="hero-sub">I design, deploy, and support humanoid and quadruped
                 robots in production &mdash; ROS2, teleoperation, edge&nbsp;AI, and the
@@ -81,6 +81,13 @@
           </div>
         </div>
 
+        <div class="hud" id="hud" aria-hidden="true">
+          <p><span class="hud-label">SYS</span><span id="hudSys">BOOT</span></p>
+          <p><span class="hud-label">DISSOLVE</span><span id="hudP">0%</span></p>
+          <p><span class="hud-label">PTR</span><span id="hudPtr">&mdash;</span></p>
+          <p><span class="hud-label">FPS</span><span id="hudFps">&mdash;</span></p>
+        </div>
+
         <p class="hero-foot" aria-hidden="true">ROBOSTORE &mdash; OFFICIAL U.S. PARTNER OF UNITREE</p>
       </div>
     </section>
@@ -94,6 +101,53 @@
           something you can <em>trust.</em>
         </p>
       </div>
+    </section>
+
+    <!-- ===== Path / timeline ===== -->
+    <section class="path" aria-label="Career path">
+      <div class="path-head">
+        <p class="eyebrow eyebrow-dark"><span>THE PATH</span></p>
+        <h2 class="path-title">Campus to <em>the field.</em></h2>
+      </div>
+      <ol class="path-list">
+        <li class="path-item">
+          <span class="path-when">2020</span>
+          <div class="path-body">
+            <h3>Kellenberg Memorial High School</h3>
+            <p>Class of 2020, Long Island, New York &mdash; where the engineering
+              itch started. Came back years later with a G1 humanoid in tow to
+              show the next class what robotics looks like now.</p>
+          </div>
+        </li>
+        <li class="path-item">
+          <span class="path-when">2020&ndash;2024</span>
+          <div class="path-body">
+            <h3>Sacred Heart University</h3>
+            <p>B.S. Computer Science, minors in Cybersecurity &amp; Mathematics.
+              Built <strong>IntelliPARK</strong> &mdash; a campus-wide smart parking
+              platform running computer-vision cameras, ultrasonic occupancy
+              sensors, and edge processing nodes.</p>
+          </div>
+        </li>
+        <li class="path-item">
+          <span class="path-when">RoboStore</span>
+          <div class="path-body">
+            <h3>Integration Specialist</h3>
+            <p>Joined the Unitree-RoboStore team &mdash; bridging engineering,
+              software, and innovation for classrooms, labs, and industry.
+              Designed a line of custom 3D-printed hardware for Unitree platforms.</p>
+          </div>
+        </li>
+        <li class="path-item">
+          <span class="path-when">Now</span>
+          <div class="path-body">
+            <h3>Head of Technology, Unitree-RoboStore</h3>
+            <p>Leading the robotics stack &mdash; G1 humanoid commissioning, VR
+              whole-body teleoperation, autonomous patrol, and the enterprise
+              infrastructure that keeps it all running.</p>
+          </div>
+        </li>
+      </ol>
     </section>
 
     <!-- ===== Work ===== -->
@@ -116,16 +170,16 @@
           <span class="work-num">02</span>
           <div class="work-body">
             <h3>VR Teleoperation</h3>
-            <p>Whole-body humanoid control over WebRTC &mdash; Pico, Quest, and
-              Apple Vision Pro pipelines.</p>
+            <p>Whole-body humanoid control over WebRTC &mdash; Apple Vision Pro,
+              Quest, and Pico pipelines with a G1 motor-command bridge.</p>
           </div>
-          <span class="work-tag">WebRTC</span>
+          <span class="work-tag">Vision Pro</span>
         </li>
         <li class="work-row">
           <span class="work-num">03</span>
           <div class="work-body">
             <h3>Autonomous Patrol</h3>
-            <p>Go2 / B2 security robotics &mdash; SLAM navigation, LiDAR mapping,
+            <p>Go2 / B2 security robotics &mdash; SLAM, Nav2, LiDAR mapping,
               edge AI inference on Jetson Orin.</p>
           </div>
           <span class="work-tag">SLAM</span>
@@ -133,27 +187,28 @@
         <li class="work-row">
           <span class="work-num">04</span>
           <div class="work-body">
-            <h3>Enterprise Integration</h3>
-            <p>Dockerized ROS2 stacks, fleet management, cloud robotics workflows,
-              5G field networking.</p>
+            <h3>Robotics Infrastructure</h3>
+            <p>Dockerized ROS2 stacks, CycloneDDS tuning, MQTT telemetry, AWS
+              cloud sync, OTA pipelines, RUTM50 5G field networking.</p>
           </div>
           <span class="work-tag">ROS2</span>
         </li>
         <li class="work-row">
           <span class="work-num">05</span>
           <div class="work-body">
-            <h3>Robotics Infrastructure</h3>
-            <p>CycloneDDS tuning, MQTT telemetry bridges, AWS cloud sync,
-              OTA update pipelines.</p>
+            <h3>Custom Robotics Hardware</h3>
+            <p>A line of 3D-printed accessories for Unitree platforms &mdash;
+              sensor mounts, camera brackets, joint guards &mdash; plus ESP32
+              firmware and sensor integration.</p>
           </div>
-          <span class="work-tag">AWS</span>
+          <span class="work-tag">3D Print</span>
         </li>
         <li class="work-row">
           <span class="work-num">06</span>
           <div class="work-body">
             <h3>Embodied AI</h3>
-            <p>On-robot inference, vision-language integration, Jetson Orin
-              deployment &mdash; intelligence where the robot is.</p>
+            <p>On-robot inference and vision-language integration &mdash; OpenCV,
+              Isaac Sim, Jetson Orin deployment. Intelligence where the robot is.</p>
           </div>
           <span class="work-tag">Edge AI</span>
         </li>
@@ -163,10 +218,37 @@
     <!-- ===== Marquee ===== -->
     <div class="marquee" aria-hidden="true">
       <div class="marquee-track">
-        <span>UNITREE G1 &mdash; GO2 &mdash; B2 &mdash; ROS2 &mdash; WEBRTC &mdash; JETSON ORIN &mdash; VR TELEOP &mdash; SLAM &mdash; CYCLONEDDS &mdash; EDGE AI &mdash;&nbsp;</span>
-        <span>UNITREE G1 &mdash; GO2 &mdash; B2 &mdash; ROS2 &mdash; WEBRTC &mdash; JETSON ORIN &mdash; VR TELEOP &mdash; SLAM &mdash; CYCLONEDDS &mdash; EDGE AI &mdash;&nbsp;</span>
+        <span>UNITREE G1 &mdash; GO2 &mdash; B2 &mdash; ROS2 &mdash; WEBRTC &mdash; VISION PRO &mdash; JETSON ORIN &mdash; SLAM &mdash; ISAAC SIM &mdash; CYCLONEDDS &mdash;&nbsp;</span>
+        <span>UNITREE G1 &mdash; GO2 &mdash; B2 &mdash; ROS2 &mdash; WEBRTC &mdash; VISION PRO &mdash; JETSON ORIN &mdash; SLAM &mdash; ISAAC SIM &mdash; CYCLONEDDS &mdash;&nbsp;</span>
       </div>
     </div>
+
+    <!-- ===== Platforms ===== -->
+    <section class="platforms" aria-label="Hardware platforms">
+      <p class="eyebrow"><span>IN THE FLEET</span></p>
+      <div class="platform-grid">
+        <article class="platform-card">
+          <span class="platform-type">Humanoid</span>
+          <h3>Unitree G1</h3>
+          <p>SDK2 &middot; ROS2 &middot; Whole-body control &middot; Inspire Hands &middot; BrainCo</p>
+        </article>
+        <article class="platform-card">
+          <span class="platform-type">Quadruped</span>
+          <h3>Unitree Go2</h3>
+          <p>Go2 SDK &middot; Nav2 &middot; SLAM &middot; LiDAR &middot; Autonomous patrol</p>
+        </article>
+        <article class="platform-card">
+          <span class="platform-type">Industrial Quadruped</span>
+          <h3>Unitree B2</h3>
+          <p>B2 SDK &middot; Enterprise payloads &middot; Security robotics</p>
+        </article>
+        <article class="platform-card">
+          <span class="platform-type">The Bench</span>
+          <h3>Edge &amp; Comms</h3>
+          <p>Jetson Orin &middot; LattePanda &middot; RUTM50 5G &middot; ESP32 &middot; Raspberry Pi</p>
+        </article>
+      </div>
+    </section>
 
     <!-- ===== Contact ===== -->
     <footer class="contact" id="contact">
@@ -178,7 +260,7 @@
         <li><a href="https://www.linkedin.com/in/kamilszwed006" target="_blank" rel="noopener">LinkedIn</a></li>
         <li><a href="https://robostore.com" target="_blank" rel="noopener">RoboStore</a></li>
       </ul>
-      <p class="contact-fine">&copy; 2026 Kamil Szwed &mdash; Head of Technology, RoboStore</p>
+      <p class="contact-fine">&copy; 2026 Kamil Szwed &mdash; Long Island, New York &mdash; Head of Technology, Unitree-RoboStore</p>
     </footer>
   </main>
 

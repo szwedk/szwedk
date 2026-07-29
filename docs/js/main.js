@@ -33,19 +33,26 @@
     var ctx = canvas.getContext('2d');
     var img = new Image();
     var imgReady = false;
-    var particles = null;   // typed arrays
+    var particles = null;
     var count = 0;
     var draw = { x: 0, y: 0, w: 0, h: 0 };
     var DPR = 1;
     var targetP = 0, curP = 0;
-    var mouseX = 0, mouseY = 0, parX = 0, parY = 0;
+    var mouseX = 0, mouseY = 0, parX = 0, parY = 0; // parallax (-1..1)
+    var mcx = -9999, mcy = -9999;                    // cursor in canvas coords
+    var pulse = { v: 0 };                            // easter-egg dissolve pulse
     var rafId = null;
-    var running = false;
     var staticMode = false;
     var heroVisible = true;
+    var dirty = true;
+    var fps = 0, fpsFrames = 0, fpsLast = 0;
 
-    img.onload = function () { imgReady = true; resize(); kick(); };
-    img.onerror = function () { /* headline copy still works without the image */ };
+    var hudP = document.getElementById('hudP');
+    var hudPtr = document.getElementById('hudPtr');
+    var hudFps = document.getElementById('hudFps');
+    var hudSys = document.getElementById('hudSys');
+
+    img.onload = function () { imgReady = true; resize(); };
     img.src = 'assets/portrait.jpg';
 
     function resize() {
@@ -66,7 +73,6 @@
     }
 
     function buildParticles() {
-      // sample the image on an offscreen canvas
       var isMobile = window.innerWidth < 700;
       var targetCols = isMobile ? 80 : 120;
       var sw = targetCols;
@@ -87,7 +93,7 @@
           var k = (j * sw + i) * 4;
           var r = data[k], g = data[k + 1], b = data[k + 2];
           var lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-          if (lum < 9) continue; // skip the black backdrop
+          if (lum < 9) continue;
           px.push(draw.x + i * stepX + stepX / 2);
           py.push(draw.y + j * stepY + stepY / 2);
           pr.push(r); pg.push(g); pb.push(b);
@@ -107,12 +113,10 @@
       var cx = draw.x + draw.w / 2, cy = draw.y + draw.h * 0.42;
       for (var n = 0; n < count; n++) {
         var rng = mulberry32(seeds[n] * 2654435761);
-        var nx = (particles.x[n] - draw.x) / draw.w; // 0..1 left→right
-        // scatter direction: mostly away from face center, biased up-right
+        var nx = (particles.x[n] - draw.x) / draw.w;
         var base = Math.atan2(particles.y[n] - cy, particles.x[n] - cx);
         particles.ang[n] = base + (rng() - 0.5) * 1.6;
         particles.dist[n] = (40 + rng() * 210) * (0.6 + rng() * 0.8);
-        // dissolve sweeps right → left (like the reference's half-particle face)
         particles.a0[n] = 0.14 + ((1 - nx) * 0.62 + rng() * 0.38) * 0.5;
         particles.drip[n] = rng() < 0.18 ? 0.5 + rng() * 1.3 : rng() * 0.25;
         particles.wob[n] = 6 + rng() * 22;
@@ -120,7 +124,6 @@
       }
     }
 
-    var dirty = true;
     function render(t) {
       var W = canvas.width, H = canvas.height;
       ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
@@ -128,37 +131,71 @@
 
       if (!imgReady) return;
 
-      var p = staticMode ? 0 : curP;
+      var p = staticMode ? 0 : Math.min(1, curP + pulse.v);
       var ox = parX, oy = parY;
 
-      // 1) the photo itself, fading out as dissolution takes over
       var imgAlpha = 1 - smoothstep(0.10, 0.34, p);
       if (imgAlpha > 0.004) {
         ctx.globalAlpha = imgAlpha;
         ctx.drawImage(img, draw.x + ox, draw.y + oy, draw.w, draw.h);
       }
 
-      // 2) particles
-      if (particles && p > 0.02) {
+      if (particles && !staticMode) {
         var time = t * 0.001;
         var meltT = Math.max(0, p - 0.62);
         var melt = meltT * meltT;
         var vh = canvas.clientHeight;
+        // cursor disturbance is strongest while the photo is intact, fades as
+        // the scroll dissolve takes over
+        var proxScale = 1 - smoothstep(0.30, 0.5, p);
+        var R = 130, R2 = R * R;          // disturbance radius (photo intact)
+        var RR = 170, RR2 = RR * RR;      // repulsion radius (scattered cloud)
         for (var n = 0; n < count; n++) {
           var act = smoothstep(particles.a0[n], particles.a0[n] + 0.17, p);
-          if (act <= 0.001) continue;
+          var hx = particles.x[n], hy = particles.y[n];
+          var ddx = hx - mcx, ddy = hy - mcy;
+          var d2 = ddx * ddx + ddy * ddy;
+          var prox = 0;
+          if (proxScale > 0.01 && d2 < R2) {
+            var dd = Math.sqrt(d2) || 1;
+            prox = (1 - dd / R);
+            prox = prox * prox * proxScale;
+          }
+          if (act <= 0.001 && prox <= 0.001) continue;
+
           var ease = act * act;
           var d = particles.dist[n] * ease;
-          var x = particles.x[n] + Math.cos(particles.ang[n]) * d + ox;
-          var y = particles.y[n] + Math.sin(particles.ang[n]) * d * 0.7 + oy;
+          var x = hx + Math.cos(particles.ang[n]) * d + ox;
+          var y = hy + Math.sin(particles.ang[n]) * d * 0.7 + oy;
           x += Math.sin(time * 0.9 + particles.phase[n]) * particles.wob[n] * act;
           y += Math.cos(time * 0.7 + particles.phase[n] * 1.3) * particles.wob[n] * 0.6 * act;
-          // late-phase: streak downward like melting chrome
+
+          // cursor disturbance while the portrait is whole: dust lifts off
+          // the surface and drifts away from the pointer
+          if (prox > 0.001) {
+            var pd = Math.sqrt(d2) || 1;
+            x += (ddx / pd) * prox * 46;
+            y += (ddy / pd) * prox * 46 - prox * 14;
+          }
+
+          // cursor repulsion on the scattered cloud
+          if (act > 0.01 && p > 0.2) {
+            var rdx = x - mcx, rdy = y - mcy;
+            var rd2 = rdx * rdx + rdy * rdy;
+            if (rd2 < RR2) {
+              var rd = Math.sqrt(rd2) || 1;
+              var push = (1 - rd / RR);
+              push = push * push * 52;
+              x += (rdx / rd) * push;
+              y += (rdy / rd) * push;
+            }
+          }
+
           var dripAmt = melt * particles.drip[n] * vh * 1.05;
           y += dripAmt;
-          var sz = particles.s[n] * (0.8 + act * 0.5);
+          var sz = particles.s[n] * (0.8 + Math.max(act, prox) * 0.5);
           var stretch = 1 + melt * particles.drip[n] * 26;
-          ctx.globalAlpha = act * (1 - melt * 0.55);
+          ctx.globalAlpha = Math.max(act * (1 - melt * 0.55), prox * 0.9);
           ctx.fillStyle = 'rgb(' + particles.r[n] + ',' + particles.g[n] + ',' + particles.b[n] + ')';
           ctx.fillRect(x, y, sz, sz * stretch);
         }
@@ -166,10 +203,23 @@
       ctx.globalAlpha = 1;
     }
 
+    function updateHud(t) {
+      if (!hudP || staticMode || !heroVisible) return;
+      fpsFrames++;
+      if (t - fpsLast > 500) {
+        fps = Math.round(fpsFrames * 1000 / (t - fpsLast));
+        fpsFrames = 0; fpsLast = t;
+        hudFps.textContent = String(fps);
+      }
+      hudP.textContent = Math.round(Math.min(1, curP + pulse.v) * 100) + '%';
+      if (mcx > -9000) hudPtr.textContent = Math.round(mcx) + ',' + Math.round(mcy);
+    }
+
     function frame(t) {
       rafId = requestAnimationFrame(frame);
       if (!heroVisible && !dirty) return;
-      var animating = !staticMode && curP > 0.02 && curP < 1;
+      var p = Math.min(1, curP + pulse.v);
+      var animating = !staticMode && (p > 0.02 || mcx > -9000) && p < 1;
       curP += (targetP - curP) * 0.14;
       if (Math.abs(targetP - curP) < 0.0004) curP = targetP;
       parX += ((mouseX * 16) - parX) * 0.05;
@@ -177,12 +227,9 @@
       var parMoving = Math.abs(mouseX * 16 - parX) > 0.1 || Math.abs(mouseY * 10 - parY) > 0.1;
       if (dirty || animating || Math.abs(targetP - curP) > 0.0004 || parMoving) {
         render(t);
+        updateHud(t);
         dirty = false;
       }
-    }
-
-    function kick() {
-      if (rafId === null) rafId = requestAnimationFrame(frame);
     }
 
     window.addEventListener('resize', function () {
@@ -193,18 +240,38 @@
       if (staticMode) return;
       mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
       mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+      var rect = canvas.getBoundingClientRect();
+      mcx = e.clientX - rect.left;
+      mcy = e.clientY - rect.top;
       dirty = true;
+    });
+    // hidden: press "g" for a dissolve pulse
+    window.addEventListener('keydown', function (e) {
+      if (staticMode) return;
+      if ((e.key === 'g' || e.key === 'G') && !e.metaKey && !e.ctrlKey && !e.altKey) {
+        var tgt = e.target;
+        if (tgt && (tgt.tagName === 'INPUT' || tgt.tagName === 'TEXTAREA')) return;
+        gsap.to(pulse, { v: 0.5, duration: 0.7, ease: 'power2.out' });
+        gsap.to(pulse, { v: 0, duration: 1.1, ease: 'power2.inOut', delay: 0.75 });
+      }
     });
 
     resize();
-    kick();
+    rafId = requestAnimationFrame(frame);
 
     return {
       setProgress: function (p) { targetP = p; },
       setVisible: function (v) { heroVisible = v; dirty = dirty || v; },
       setStatic: function (s) {
         staticMode = s;
-        if (s) { targetP = 0; curP = 0; }
+        if (s) {
+          targetP = 0; curP = 0; pulse.v = 0;
+          if (hudSys) hudSys.textContent = 'STATIC';
+          if (hudP) hudP.textContent = '0%';
+          if (hudFps) hudFps.textContent = '—';
+        } else if (hudSys) {
+          hudSys.textContent = 'ONLINE';
+        }
         dirty = true;
       }
     };
@@ -237,6 +304,16 @@
     el.innerHTML = '';
     el.appendChild(frag);
     return Array.prototype.slice.call(el.querySelectorAll('.word'));
+  })();
+
+  /* ---------- progress line for the path timeline ---------- */
+  var pathLine = (function () {
+    var list = document.querySelector('.path-list');
+    if (!list) return null;
+    var line = document.createElement('span');
+    line.className = 'path-line';
+    list.appendChild(line);
+    return line;
   })();
 
   /* ============================================================
@@ -285,7 +362,7 @@
         .to(h(1), { autoAlpha: 0, y: -70, filter: 'blur(9px)', duration: 9 }, 55)
         .fromTo(h(2), { autoAlpha: 0, y: 70, filter: 'blur(9px)' },
                       { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 9 }, 64)
-        .to({}, { duration: 27 }, 73); // hold to the end of the pin
+        .to({}, { duration: 27 }, 73);
 
       /* ----- manifesto: scattered words assemble ----- */
       var vw = window.innerWidth, vh2 = window.innerHeight;
@@ -313,7 +390,7 @@
         duration: 62,
         stagger: { each: 26 / manifestoWords.length, from: 'random' }
       }, 0)
-      .to({}, { duration: 26 }, 74); // settle time before the section unpins
+      .to({}, { duration: 26 }, 74);
 
       /* ----- rails: only over the hero ----- */
       gsap.to('.rail-top-right, .rail-mid-right, .rail-bottom-right', {
@@ -323,6 +400,29 @@
           start: 'top 65%',
           toggleActions: 'play none none reverse'
         }
+      });
+
+      /* ----- path timeline ----- */
+      if (pathLine) {
+        gsap.fromTo(pathLine, { scaleY: 0 }, {
+          scaleY: 1, ease: 'none',
+          scrollTrigger: {
+            trigger: '.path-list',
+            start: 'top 75%',
+            end: 'bottom 55%',
+            scrub: true
+          }
+        });
+      }
+      gsap.utils.toArray('.path-item').forEach(function (item) {
+        gsap.fromTo(item, { x: -34, autoAlpha: 0 }, {
+          x: 0, autoAlpha: 1, duration: 0.8, ease: 'power3.out',
+          scrollTrigger: { trigger: item, start: 'top 82%' }
+        });
+      });
+      gsap.fromTo('.path-head', { y: 40, autoAlpha: 0 }, {
+        y: 0, autoAlpha: 1, duration: 0.9, ease: 'power3.out',
+        scrollTrigger: { trigger: '.path-head', start: 'top 85%' }
       });
 
       /* ----- work rows ----- */
@@ -335,6 +435,14 @@
       gsap.fromTo('.work-head', { y: 40, autoAlpha: 0 }, {
         y: 0, autoAlpha: 1, duration: 0.9, ease: 'power3.out',
         scrollTrigger: { trigger: '.work-head', start: 'top 85%' }
+      });
+
+      /* ----- platforms ----- */
+      gsap.utils.toArray('.platform-card').forEach(function (card, i) {
+        gsap.fromTo(card, { y: 36, autoAlpha: 0 }, {
+          y: 0, autoAlpha: 1, duration: 0.8, ease: 'power3.out', delay: (i % 4) * 0.07,
+          scrollTrigger: { trigger: card, start: 'top 90%' }
+        });
       });
 
       /* ----- contact reveal ----- */
@@ -352,9 +460,16 @@
           .fromTo('.hero-headline[data-headline="0"] .eyebrow, .hero-headline[data-headline="0"] h1, .hero-headline[data-headline="0"] .hero-sub',
             { y: 42, autoAlpha: 0 },
             { y: 0, autoAlpha: 1, duration: 1, ease: 'power3.out', stagger: 0.1 }, 0.2)
-          .fromTo('.rail, .hero-foot, .site-chrome',
+          .fromTo('.rail, .hero-foot, .site-chrome, .hud',
             { autoAlpha: 0 },
-            { autoAlpha: 1, duration: 0.9, ease: 'power2.out', stagger: 0.06 }, 0.5);
+            { autoAlpha: 1, duration: 0.9, ease: 'power2.out', stagger: 0.06 }, 0.5)
+          .call(function () {
+            var sys = document.getElementById('hudSys');
+            if (sys) sys.textContent = 'ONLINE';
+          }, null, 1.1);
+      } else {
+        var sys = document.getElementById('hudSys');
+        if (sys) sys.textContent = 'ONLINE';
       }
     });
 
@@ -371,7 +486,6 @@
     gsap.ticker.remove(tickLenis);
     document.documentElement.classList.add('no-motion');
     heroFX.setStatic(true);
-    // with animations reverted, make sure the intro headline is shown
     gsap.set('.hero-headline[data-headline="0"]', { clearProps: 'all' });
   }
 

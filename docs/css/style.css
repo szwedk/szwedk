@@ -182,7 +182,7 @@ em {
 /* ============ Hero ============ */
 .hero {
   position: relative;
-  height: 460vh;
+  height: 280vh;
   background: #050505;
 }
 .hero-inner {
@@ -270,10 +270,108 @@ em {
   z-index: 5;
 }
 
+/* ============ Telemetry HUD ============ */
+.hud {
+  position: absolute;
+  right: var(--pad-x);
+  bottom: 64px;
+  z-index: 5;
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  line-height: 2;
+  color: var(--bone-dim);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.hud-label {
+  color: var(--bone-faint);
+  margin-right: 10px;
+}
+.hud #hudSys { color: #8fd18f; }
+
+/* ============ Path / timeline ============ */
+.path {
+  background: var(--paper);
+  color: var(--ink);
+  padding: 12vh var(--pad-x) 10vh;
+}
+.path-head { margin-bottom: 7vh; }
+.path-title {
+  margin-top: 26px;
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+.path-list {
+  list-style: none;
+  position: relative;
+  max-width: 860px;
+}
+.path-list::before {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: var(--hairline-dark);
+}
+.path-line {
+  position: absolute;
+  left: 3px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: var(--ink);
+  transform-origin: top;
+  transform: scaleY(0);
+}
+.path-item {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: clamp(18px, 3vw, 44px);
+  padding: 26px 0 26px 34px;
+  position: relative;
+}
+.path-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 36px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+.path-when {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  opacity: 0.55;
+  padding-top: 6px;
+  white-space: nowrap;
+}
+.path-body h3 {
+  font-size: clamp(1.15rem, 2vw, 1.55rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.path-body p {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 58ch;
+  opacity: 0.85;
+}
+.path-body strong { font-weight: 600; }
+
 /* ============ Manifesto (word assembly) ============ */
 .manifesto {
   position: relative;
-  height: 380vh;
+  height: 220vh;
   background: var(--paper);
   color: var(--ink);
 }
@@ -305,9 +403,9 @@ em {
 .work {
   background: var(--paper);
   color: var(--ink);
-  padding: 18vh var(--pad-x) 16vh;
+  padding: 12vh var(--pad-x) 12vh;
 }
-.work-head { margin-bottom: 9vh; }
+.work-head { margin-bottom: 7vh; }
 .work-title {
   margin-top: 26px;
   font-size: clamp(2.4rem, 5.6vw, 4.8rem);
@@ -382,11 +480,52 @@ em {
 }
 html.no-motion .marquee-track { animation-play-state: paused; }
 
+/* ============ Platforms ============ */
+.platforms {
+  background: #050505;
+  color: var(--bone);
+  padding: 10vh var(--pad-x) 12vh;
+  border-top: 1px solid var(--hairline-light);
+}
+.platforms > .eyebrow { margin-bottom: 44px; }
+.platform-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1px;
+  background: var(--hairline-light);
+  border: 1px solid var(--hairline-light);
+}
+.platform-card {
+  background: #050505;
+  padding: 30px 26px 34px;
+  transition: background 0.3s ease;
+}
+.platform-card:hover { background: #0d0d0e; }
+.platform-type {
+  display: block;
+  font-size: 9.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--bone-faint);
+  margin-bottom: 18px;
+}
+.platform-card h3 {
+  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.platform-card p {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--bone-dim);
+}
+
 /* ============ Contact ============ */
 .contact {
   background: #050505;
   color: var(--bone);
-  min-height: 92vh;
+  min-height: 84vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -441,6 +580,9 @@ html.no-motion .marquee-track { animation-play-state: paused; }
 /* ============ Responsive ============ */
 @media (max-width: 900px) {
   .rail-top-right, .rail-mid-right { display: none; }
+  .hud { display: none; }
+  .path-item { grid-template-columns: 1fr; gap: 6px; }
+  .path-when { padding-top: 0; }
   .hero-copy {
     max-width: min(520px, 86vw);
     top: auto;
