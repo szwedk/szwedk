@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kamil Szwed — Robotics in Motion</title>
+  <meta name="description" content="Kamil Szwed — Head of Technology at RoboStore. Deploying humanoid and quadruped robots in production: ROS2, VR teleoperation, edge AI, enterprise autonomy." />
+  <meta property="og:title" content="Kamil Szwed — Robotics in Motion" />
+  <meta property="og:description" content="Head of Technology at RoboStore. Humanoids, quadrupeds, and the systems that ship them." />
+  <meta property="og:image" content="assets/portrait.jpg" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="fonts/InterTight-var.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/InstrumentSerif-400-italic.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="fonts/fonts.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===== Fixed chrome ===== -->
+  <header class="site-chrome">
+    <a class="brand" href="#top" data-nav>
+      <span class="brand-name">Kamil Szwed</span>
+      <span class="brand-sub">BUILD &middot; DEPLOY &middot; SUPPORT</span>
+    </a>
+
+    <nav class="pill-nav" aria-label="Primary">
+      <a href="#top" class="is-active" data-nav>Home</a>
+      <a href="#about" data-nav>About</a>
+      <a href="#contact" data-nav>Contact</a>
+    </nav>
+
+    <button class="motion-toggle" id="motionToggle" type="button" role="switch" aria-checked="true" aria-label="Toggle motion effects">
+      <span class="motion-toggle-knob"></span>
+    </button>
+  </header>
+
+  <div class="rail rail-top-right" aria-hidden="true">
+    <p>ROS2 &middot; TELEOP &middot; EDGE AI</p>
+    <p>USA &middot; WORLDWIDE</p>
+  </div>
+
+  <div class="rail rail-mid-right">
+    <p class="rail-label">Currently</p>
+    <p class="rail-strong">Deploying Unitree G1<br />humanoids in the field</p>
+    <p class="rail-label rail-gap">This week</p>
+    <p>VR whole-body teleop over WebRTC<br />Autonomous patrol on Go2 / B2</p>
+  </div>
+
+  <div class="rail rail-bottom-right" aria-hidden="true">
+    <p>&darr;&nbsp; SCROLL TO EXPLORE</p>
+  </div>
+
+  <!-- ===== Hero (pinned, scroll-scrubbed) ===== -->
+  <main id="top">
+    <section class="hero" id="hero">
+      <div class="hero-inner">
+        <canvas id="heroCanvas" aria-hidden="true"></canvas>
+        <noscript>
+          <img class="hero-fallback" src="assets/portrait.jpg" alt="Portrait of Kamil Szwed" />
+        </noscript>
+
+        <div class="hero-copy">
+          <div class="hero-headlines">
+            <div class="hero-headline is-current" data-headline="0">
+              <p class="eyebrow"><span>ROBOSTORE &middot; HEAD OF TECHNOLOGY</span></p>
+              <h1>Building robots<br />that <em>move.</em></h1>
+              <p class="hero-sub">I design, deploy, and support humanoid and quadruped
+                robots in production &mdash; ROS2, teleoperation, edge&nbsp;AI, and the
+                systems behind them.</p>
+            </div>
+            <div class="hero-headline" data-headline="1">
+              <h2>Humanoids.<br />Quadrupeds.<br /><em>Autonomy.</em></h2>
+              <p class="hero-sub">From low-level SDK control to full autonomy &mdash;
+                the whole stack, hardware to cloud.</p>
+            </div>
+            <div class="hero-headline" data-headline="2">
+              <h2>Robots that<br />actually <em>ship.</em></h2>
+              <p class="hero-sub">Not lab demos. Commissioned, connected, supported
+                &mdash; running where the work is.</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="hero-foot" aria-hidden="true">ROBOSTORE &mdash; OFFICIAL U.S. PARTNER OF UNITREE</p>
+      </div>
+    </section>
+
+    <!-- ===== Word assembly (pinned, light) ===== -->
+    <section class="manifesto" id="about" aria-label="Manifesto">
+      <div class="manifesto-pin">
+        <p class="manifesto-text" id="manifestoText">
+          A robot should work in the field, not just the lab. So I sweat every
+          sensor, every failover, every deploy &mdash; until autonomy becomes
+          something you can <em>trust.</em>
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Work ===== -->
+    <section class="work" aria-label="What I do">
+      <div class="work-head">
+        <p class="eyebrow eyebrow-dark"><span>WHAT I DO</span></p>
+        <h2 class="work-title">Hardware to <em>full stack.</em></h2>
+      </div>
+      <ol class="work-list">
+        <li class="work-row">
+          <span class="work-num">01</span>
+          <div class="work-body">
+            <h3>Humanoid Deployment</h3>
+            <p>Unitree G1 &mdash; SDK2, ROS2, whole-body control, enterprise
+              commissioning, Inspire Hands &amp; BrainCo dexterous manipulation.</p>
+          </div>
+          <span class="work-tag">G1</span>
+        </li>
+        <li class="work-row">
+          <span class="work-num">02</span>
+          <div class="work-body">
+            <h3>VR Teleoperation</h3>
+            <p>Whole-body humanoid control over WebRTC &mdash; Pico, Quest, and
+              Apple Vision Pro pipelines.</p>
+          </div>
+          <span class="work-tag">WebRTC</span>
+        </li>
+        <li class="work-row">
+          <span class="work-num">03</span>
+          <div class="work-body">
+            <h3>Autonomous Patrol</h3>
+            <p>Go2 / B2 security robotics &mdash; SLAM navigation, LiDAR mapping,
+              edge AI inference on Jetson Orin.</p>
+          </div>
+          <span class="work-tag">SLAM</span>
+        </li>
+        <li class="work-row">
+          <span class="work-num">04</span>
+          <div class="work-body">
+            <h3>Enterprise Integration</h3>
+            <p>Dockerized ROS2 stacks, fleet management, cloud robotics workflows,
+              5G field networking.</p>
+          </div>
+          <span class="work-tag">ROS2</span>
+        </li>
+        <li class="work-row">
+          <span class="work-num">05</span>
+          <div class="work-body">
+            <h3>Robotics Infrastructure</h3>
+            <p>CycloneDDS tuning, MQTT telemetry bridges, AWS cloud sync,
+              OTA update pipelines.</p>
+          </div>
+          <span class="work-tag">AWS</span>
+        </li>
+        <li class="work-row">
+          <span class="work-num">06</span>
+          <div class="work-body">
+            <h3>Embodied AI</h3>
+            <p>On-robot inference, vision-language integration, Jetson Orin
+              deployment &mdash; intelligence where the robot is.</p>
+          </div>
+          <span class="work-tag">Edge AI</span>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ===== Marquee ===== -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>UNITREE G1 &mdash; GO2 &mdash; B2 &mdash; ROS2 &mdash; WEBRTC &mdash; JETSON ORIN &mdash; VR TELEOP &mdash; SLAM &mdash; CYCLONEDDS &mdash; EDGE AI &mdash;&nbsp;</span>
+        <span>UNITREE G1 &mdash; GO2 &mdash; B2 &mdash; ROS2 &mdash; WEBRTC &mdash; JETSON ORIN &mdash; VR TELEOP &mdash; SLAM &mdash; CYCLONEDDS &mdash; EDGE AI &mdash;&nbsp;</span>
+      </div>
+    </div>
+
+    <!-- ===== Contact ===== -->
+    <footer class="contact" id="contact">
+      <p class="eyebrow"><span>GET IN TOUCH</span></p>
+      <h2 class="contact-title">Let&rsquo;s build something<br />that <em>moves.</em></h2>
+      <a class="contact-email" href="mailto:kamil@robostore.com">kamil@robostore.com</a>
+      <ul class="contact-links">
+        <li><a href="https://github.com/szwedk" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/kamilszwed006" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://robostore.com" target="_blank" rel="noopener">RoboStore</a></li>
+      </ul>
+      <p class="contact-fine">&copy; 2026 Kamil Szwed &mdash; Head of Technology, RoboStore</p>
+    </footer>
+  </main>
+
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
+  <script src="vendor/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
