@@ -9,8 +9,8 @@
   --paper: #efece5;
   --paper-dim: #e5e1d8;
   --bone: #f2efe9;
-  --bone-dim: rgba(242, 239, 233, 0.62);
-  --bone-faint: rgba(242, 239, 233, 0.38);
+  --bone-dim: rgba(242, 239, 233, 0.72);
+  --bone-faint: rgba(242, 239, 233, 0.52);
   --hairline-light: rgba(242, 239, 233, 0.16);
   --hairline-dark: rgba(11, 11, 12, 0.14);
   --font-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -62,14 +62,19 @@ em {
   inset: 0 0 auto 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 22px var(--pad-x);
   z-index: 50;
   pointer-events: none;
 }
 .site-chrome > * { pointer-events: auto; }
 
+/* body-level so mix-blend-mode sees the page, not an isolated header group */
 .brand {
+  position: fixed;
+  top: 22px;
+  left: var(--pad-x);
+  z-index: 51;
   display: flex;
   flex-direction: column;
   gap: 3px;
@@ -96,7 +101,7 @@ em {
   gap: 2px;
   padding: 5px;
   border-radius: 999px;
-  background: rgba(16, 16, 17, 0.55);
+  background: rgba(16, 16, 17, 0.85);
   border: 1px solid rgba(242, 239, 233, 0.12);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -118,13 +123,16 @@ em {
 }
 
 .motion-toggle {
+  position: fixed;
+  top: 22px;
+  right: var(--pad-x);
+  z-index: 51;
   width: 44px;
   height: 24px;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   background: transparent;
   cursor: pointer;
-  position: relative;
   mix-blend-mode: difference;
   transition: opacity 0.25s ease;
 }
@@ -170,7 +178,7 @@ em {
   letter-spacing: 0.14em;
   font-size: 10px;
 }
-.rail-mid-right .rail-label { opacity: 0.45; font-size: 9px; letter-spacing: 0.26em; }
+.rail-mid-right .rail-label { opacity: 0.75; font-size: 9px; letter-spacing: 0.26em; }
 .rail-mid-right .rail-strong { font-weight: 600; }
 .rail-mid-right .rail-gap { margin-top: 14px; }
 .rail-bottom-right {
@@ -428,7 +436,7 @@ em {
 .work-num {
   font-size: 11px;
   letter-spacing: 0.18em;
-  opacity: 0.45;
+  opacity: 0.62;
   font-weight: 600;
 }
 .work-body h3 {
@@ -465,7 +473,7 @@ em {
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee 28s linear infinite;
+  animation: marquee 56s linear infinite;
 }
 .marquee-track span {
   font-size: clamp(1.2rem, 2.4vw, 2rem);
@@ -479,6 +487,33 @@ em {
   to { transform: translateX(-50%); }
 }
 html.no-motion .marquee-track { animation-play-state: paused; }
+/* the rails' scroll-driven fade lives in the GSAP context; without motion
+   they would sit inverted over the light sections and the footer forever */
+html.no-motion .rail { display: none; }
+
+/* ============ Focus ============ */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.pill-nav a:focus-visible { outline-color: var(--bone); outline-offset: 2px; }
+.motion-toggle:focus-visible { outline-color: #fff; }
+/* scroll-anchor targets are focused programmatically, not by the keyboard */
+main:focus, section:focus, footer:focus { outline: none; }
+
+/* screen-reader-only text (accessible copy of the split manifesto) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 /* ============ Platforms ============ */
 .platforms {
@@ -583,6 +618,16 @@ html.no-motion .marquee-track { animation-play-state: paused; }
   .hud { display: none; }
   .path-item { grid-template-columns: 1fr; gap: 6px; }
   .path-when { padding-top: 0; }
+  /* the particle field is full-bleed behind the copy here, so the melt
+     streaks need a much stronger scrim to keep the text readable */
+  .hero-inner::after {
+    background: linear-gradient(180deg,
+      rgba(5, 5, 5, 0.3) 0%,
+      rgba(5, 5, 5, 0) 20%,
+      rgba(5, 5, 5, 0) 42%,
+      rgba(5, 5, 5, 0.72) 72%,
+      rgba(5, 5, 5, 0.92) 100%);
+  }
   .hero-copy {
     max-width: min(520px, 86vw);
     top: auto;
@@ -607,7 +652,79 @@ html.no-motion .marquee-track { animation-play-state: paused; }
   .hero-foot { bottom: 18px; }
 }
 
+/* Below ~430px a centered top nav collides with the toggle. Float it to the
+   bottom instead — more thumb-reachable, and no collision at any width. */
+@media (max-width: 430px) {
+  .site-chrome {
+    inset: auto 0 0 0;
+    padding: 0 var(--pad-x) 20px;
+  }
+  .pill-nav { position: static; transform: none; }
+  .pill-nav a { padding: 8px 15px; font-size: 12.5px; }
+  .hero-foot { display: none; }
+  .hero-copy { bottom: 17vh; }   /* clear the bottom nav pill */
+  .contact-links { gap: clamp(16px, 6vw, 34px); }
+  .contact-fine { bottom: 74px; }
+}
+
 /* ============ Reduced motion ============ */
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; }
+  .rail { display: none; }
+}
+
+/* ============ Print ============
+   Collapse the pinned scroll spacers, drop the canvas and fixed chrome, and
+   flip the dark sections to ink-on-white so the default "no background
+   graphics" setting still yields readable pages. */
+@media print {
+  .site-chrome, .brand, .motion-toggle, .rail, .hud,
+  #heroCanvas, .hero-fallback, .marquee { display: none !important; }
+
+  body, .hero, .contact, .platforms {
+    background: #fff !important;
+    color: var(--ink) !important;
+  }
+  .hero, .manifesto { height: auto; }
+  .hero-inner, .manifesto-pin {
+    position: static;
+    height: auto;
+    overflow: visible;
+    display: block;
+  }
+  .hero-inner::after { display: none; }
+  .hero-copy {
+    position: static;
+    transform: none;
+    max-width: 62ch;
+    padding: 12mm 0 8mm;
+  }
+  .hero-headline { position: static; width: auto; }
+  .hero-headline[data-headline="1"],
+  .hero-headline[data-headline="2"] { display: none; }
+  .manifesto { padding: 8mm 0; }
+  .manifesto-text { max-width: 62ch; text-align: left; }
+
+  /* GSAP writes inline opacity/transform/filter — override it all */
+  .hero-headline, .hero-headline *, .hero-sub, .hero-foot,
+  .manifesto-text, .manifesto-text .word,
+  .path-head, .path-item, .work-head, .work-row,
+  .platform-card, .contact, .contact * {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    filter: none !important;
+  }
+  .hero-headline h1, .hero-headline h2, .hero-sub, .hero-foot,
+  .platform-card h3, .platform-card p, .platform-type,
+  .contact-title, .contact-email, .contact-links a, .contact-fine {
+    color: var(--ink) !important;
+  }
+  .eyebrow span { background: var(--ink) !important; color: #fff !important; }
+  .platform-grid { background: none; border-color: var(--hairline-dark); }
+  .platform-card { background: none; }
+  .contact { min-height: 0; padding: 10mm 0; }
+  .contact-fine { position: static; margin-top: 8mm; }
+  .path, .work, .platforms { padding: 8mm 0; }
+  .path-item, .work-row, .platform-card { break-inside: avoid; }
 }

@@ -28,6 +28,16 @@
   /* ============================================================
      Particle hero
      ============================================================ */
+  /* Dissolve geometry. Particle activation threshold is
+       a0(nx) = A0_BASE + ((1-nx)*0.62 + rand*0.38) * 0.5
+     so the mean activation front sweeps right-to-left as
+       a0_mean(nx) = A0_MID + (1-nx) * A0_SPAN
+     The photo is erased along that same front, which is what produces the
+     intact-face-with-a-dissolving-edge frame instead of a plain crossfade. */
+  var A0_BASE = 0.14;
+  var A0_MID = A0_BASE + 0.19 * 0.5;   // 0.235 — front at the right edge
+  var A0_SPAN = 0.62 * 0.5;            // 0.31  — front travel to the left edge
+
   var heroFX = (function () {
     var canvas = document.getElementById('heroCanvas');
     var ctx = canvas.getContext('2d');
@@ -45,6 +55,8 @@
     var staticMode = false;
     var heroVisible = true;
     var dirty = true;
+    var viewH = 0;
+    var frameNo = 0;
     var fps = 0, fpsFrames = 0, fpsLast = 0;
 
     var hudP = document.getElementById('hudP');
@@ -61,6 +73,7 @@
       if (!W || !H) return;
       canvas.width = Math.round(W * DPR);
       canvas.height = Math.round(H * DPR);
+      viewH = H;
       if (!imgReady) return;
 
       var scale = Math.min((H * 0.82) / img.height, (W * 0.92) / img.width);
@@ -86,7 +99,7 @@
         data = octx.getImageData(0, 0, sw, sh).data;
       } catch (e) { particles = null; return; }
 
-      var px = [], py = [], pr = [], pg = [], pb = [], ps = [], seeds = [];
+      var px = [], py = [], ps = [], seeds = [], col = [];
       var stepX = draw.w / sw, stepY = draw.h / sh;
       for (var j = 0; j < sh; j++) {
         for (var i = 0; i < sw; i++) {
@@ -96,7 +109,7 @@
           if (lum < 9) continue;
           px.push(draw.x + i * stepX + stepX / 2);
           py.push(draw.y + j * stepY + stepY / 2);
-          pr.push(r); pg.push(g); pb.push(b);
+          col.push('rgb(' + r + ',' + g + ',' + b + ')');
           ps.push(Math.max(1, (0.55 + (lum / 255) * 0.9) * stepX * 0.62));
           seeds.push(j * sw + i);
         }
@@ -104,9 +117,10 @@
       count = px.length;
       particles = {
         x: new Float32Array(px), y: new Float32Array(py),
-        r: new Uint8Array(pr), g: new Uint8Array(pg), b: new Uint8Array(pb),
+        col: col,
         s: new Float32Array(ps),
         ang: new Float32Array(count), dist: new Float32Array(count),
+        cosA: new Float32Array(count), sinA: new Float32Array(count),
         a0: new Float32Array(count), drip: new Float32Array(count),
         wob: new Float32Array(count), phase: new Float32Array(count)
       };
@@ -115,9 +129,12 @@
         var rng = mulberry32(seeds[n] * 2654435761);
         var nx = (particles.x[n] - draw.x) / draw.w;
         var base = Math.atan2(particles.y[n] - cy, particles.x[n] - cx);
-        particles.ang[n] = base + (rng() - 0.5) * 1.6;
+        var ang = base + (rng() - 0.5) * 1.6;
+        particles.ang[n] = ang;
+        particles.cosA[n] = Math.cos(ang);
+        particles.sinA[n] = Math.sin(ang);
         particles.dist[n] = (40 + rng() * 210) * (0.6 + rng() * 0.8);
-        particles.a0[n] = 0.14 + ((1 - nx) * 0.62 + rng() * 0.38) * 0.5;
+        particles.a0[n] = A0_BASE + ((1 - nx) * 0.62 + rng() * 0.38) * 0.5;
         particles.drip[n] = rng() < 0.18 ? 0.5 + rng() * 1.3 : rng() * 0.25;
         particles.wob[n] = 6 + rng() * 22;
         particles.phase[n] = rng() * Math.PI * 2;
@@ -134,17 +151,30 @@
       var p = staticMode ? 0 : Math.min(1, curP + pulse.v);
       var ox = parX, oy = parY;
 
-      var imgAlpha = 1 - smoothstep(0.10, 0.34, p);
-      if (imgAlpha > 0.004) {
-        ctx.globalAlpha = imgAlpha;
+      /* The photo, wiped away along the particle activation front so the
+         un-dissolved side stays photographic instead of fading to black. */
+      if (p < 0.70) {
+        ctx.globalAlpha = 1;
         ctx.drawImage(img, draw.x + ox, draw.y + oy, draw.w, draw.h);
+        if (p > A0_MID - 0.10) {
+          var frontNx = 1 - (p - A0_MID) / A0_SPAN;
+          var fx = draw.x + ox + draw.w * frontNx;
+          var feather = draw.w * 0.17;
+          var grd = ctx.createLinearGradient(fx - feather, 0, fx + feather * 0.45, 0);
+          grd.addColorStop(0, 'rgba(0,0,0,0)');
+          grd.addColorStop(1, 'rgba(0,0,0,1)');
+          ctx.globalCompositeOperation = 'destination-out';
+          ctx.fillStyle = grd;
+          ctx.fillRect(draw.x + ox - 2, draw.y + oy - 2, draw.w + 4, draw.h + 4);
+          ctx.globalCompositeOperation = 'source-over';
+        }
       }
 
       if (particles && !staticMode) {
         var time = t * 0.001;
         var meltT = Math.max(0, p - 0.62);
         var melt = meltT * meltT;
-        var vh = canvas.clientHeight;
+        var vh = viewH;
         // cursor disturbance is strongest while the photo is intact, fades as
         // the scroll dissolve takes over
         var proxScale = 1 - smoothstep(0.30, 0.5, p);
@@ -165,8 +195,8 @@
 
           var ease = act * act;
           var d = particles.dist[n] * ease;
-          var x = hx + Math.cos(particles.ang[n]) * d + ox;
-          var y = hy + Math.sin(particles.ang[n]) * d * 0.7 + oy;
+          var x = hx + particles.cosA[n] * d + ox;
+          var y = hy + particles.sinA[n] * d * 0.7 + oy;
           x += Math.sin(time * 0.9 + particles.phase[n]) * particles.wob[n] * act;
           y += Math.cos(time * 0.7 + particles.phase[n] * 1.3) * particles.wob[n] * 0.6 * act;
 
@@ -195,8 +225,9 @@
           y += dripAmt;
           var sz = particles.s[n] * (0.8 + Math.max(act, prox) * 0.5);
           var stretch = 1 + melt * particles.drip[n] * 26;
+          if (y > vh || y + sz * stretch < 0) continue;   // offscreen cull
           ctx.globalAlpha = Math.max(act * (1 - melt * 0.55), prox * 0.9);
-          ctx.fillStyle = 'rgb(' + particles.r[n] + ',' + particles.g[n] + ',' + particles.b[n] + ')';
+          ctx.fillStyle = particles.col[n];
           ctx.fillRect(x, y, sz, sz * stretch);
         }
       }
@@ -217,6 +248,7 @@
 
     function frame(t) {
       rafId = requestAnimationFrame(frame);
+      frameNo++;
       if (!heroVisible && !dirty) return;
       var p = Math.min(1, curP + pulse.v);
       var animating = !staticMode && (p > 0.02 || mcx > -9000) && p < 1;
@@ -225,11 +257,14 @@
       parX += ((mouseX * 16) - parX) * 0.05;
       parY += ((mouseY * 10) - parY) * 0.05;
       var parMoving = Math.abs(mouseX * 16 - parX) > 0.1 || Math.abs(mouseY * 10 - parY) > 0.1;
-      if (dirty || animating || Math.abs(targetP - curP) > 0.0004 || parMoving) {
-        render(t);
-        updateHud(t);
-        dirty = false;
-      }
+      var scrubbing = Math.abs(targetP - curP) > 0.0004;
+      if (!(dirty || animating || scrubbing || parMoving)) return;
+      // when the only reason to draw is the slow ambient wobble, halve the
+      // rate — imperceptible on a 6-28px sine, but half the idle CPU
+      if (!dirty && !scrubbing && !parMoving && (frameNo & 1)) return;
+      render(t);
+      updateHud(t);
+      dirty = false;
     }
 
     window.addEventListener('resize', function () {
@@ -243,7 +278,9 @@
       var rect = canvas.getBoundingClientRect();
       mcx = e.clientX - rect.left;
       mcy = e.clientY - rect.top;
-      dirty = true;
+      // don't wake the renderer for a canvas that is scrolled out of view;
+      // setVisible(true) re-marks dirty when the hero comes back
+      if (heroVisible) dirty = true;
     });
     // hidden: press "g" for a dissolve pulse
     window.addEventListener('keydown', function (e) {
@@ -282,6 +319,9 @@
      ============================================================ */
   var manifestoWords = (function () {
     var el = document.getElementById('manifestoText');
+    // per-word inline-block spans make screen readers announce the paragraph
+    // word-by-word, so keep one readable copy and hide the fragments from AT
+    var plain = el.textContent.replace(/\s+/g, ' ').trim();
     var nodes = Array.prototype.slice.call(el.childNodes);
     var frag = document.createDocumentFragment();
     nodes.forEach(function (node) {
@@ -303,7 +343,13 @@
     });
     el.innerHTML = '';
     el.appendChild(frag);
-    return Array.prototype.slice.call(el.querySelectorAll('.word'));
+    var words = Array.prototype.slice.call(el.querySelectorAll('.word'));
+    words.forEach(function (w) { w.setAttribute('aria-hidden', 'true'); });
+    var sr = document.createElement('span');
+    sr.className = 'sr-only';
+    sr.textContent = plain;
+    el.appendChild(sr);
+    return words;
   })();
 
   /* ---------- progress line for the path timeline ---------- */
@@ -321,6 +367,7 @@
      ============================================================ */
   var lenis = null;
   var ctx = null;
+  var introPlayed = false;
 
   function initMotion() {
     document.documentElement.classList.remove('no-motion');
@@ -453,14 +500,15 @@
           scrollTrigger: { trigger: '.contact', start: 'top 70%' }
         });
 
-      /* ----- intro reveal (once, on load at top) ----- */
-      if (window.scrollY < 40) {
+      /* ----- intro reveal (once per page load, at the top) ----- */
+      if (!introPlayed && window.scrollY < 40) {
+        introPlayed = true;
         var intro = gsap.timeline({ delay: 0.15 });
         intro.fromTo('#heroCanvas', { autoAlpha: 0 }, { autoAlpha: 1, duration: 1.4, ease: 'power2.out' }, 0)
           .fromTo('.hero-headline[data-headline="0"] .eyebrow, .hero-headline[data-headline="0"] h1, .hero-headline[data-headline="0"] .hero-sub',
             { y: 42, autoAlpha: 0 },
             { y: 0, autoAlpha: 1, duration: 1, ease: 'power3.out', stagger: 0.1 }, 0.2)
-          .fromTo('.rail, .hero-foot, .site-chrome, .hud',
+          .fromTo('.rail, .hero-foot, .site-chrome, .brand, .motion-toggle, .hud',
             { autoAlpha: 0 },
             { autoAlpha: 1, duration: 0.9, ease: 'power2.out', stagger: 0.06 }, 0.5)
           .call(function () {
@@ -468,6 +516,7 @@
             if (sys) sys.textContent = 'ONLINE';
           }, null, 1.1);
       } else {
+        introPlayed = true;
         var sys = document.getElementById('hudSys');
         if (sys) sys.textContent = 'ONLINE';
       }
@@ -524,15 +573,16 @@
   document.querySelectorAll('[data-nav]').forEach(function (a) {
     a.addEventListener('click', function (e) {
       var hash = a.getAttribute('href');
-      var target = hash === '#top' ? document.body : document.querySelector(hash);
-      if (!target) return;
+      var target = document.querySelector(hash);
+      // with motion off, let native fragment navigation handle scroll,
+      // history and focus — it does all three correctly
+      if (!lenis || !target) return;
       e.preventDefault();
-      if (lenis) {
-        lenis.scrollTo(hash === '#top' ? 0 : target, { duration: 1.4 });
-      } else {
-        (hash === '#top' ? document.documentElement : target)
-          .scrollIntoView({ behavior: 'auto' });
-      }
+      if (history.pushState) history.pushState(null, '', hash);
+      lenis.scrollTo(hash === '#top' ? 0 : target, { duration: 1.4 });
+      // move the sequential reading position too, so Tab continues from here
+      target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
     });
   });
 

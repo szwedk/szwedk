@@ -16,23 +16,26 @@
 </head>
 <body>
 
-  <!-- ===== Fixed chrome ===== -->
-  <header class="site-chrome">
-    <a class="brand" href="#top" data-nav>
-      <span class="brand-name">Kamil Szwed</span>
-      <span class="brand-sub">BUILD &middot; DEPLOY &middot; SUPPORT</span>
-    </a>
+  <!-- ===== Fixed chrome =====
+       .brand and .motion-toggle are body-level so their mix-blend-mode
+       composites against the page; inside a fixed/z-indexed header they
+       would sit in an isolated stacking context and never invert. -->
+  <a class="brand" href="#top" data-nav>
+    <span class="brand-name">Kamil Szwed</span>
+    <span class="brand-sub">BUILD &middot; DEPLOY &middot; SUPPORT</span>
+  </a>
 
+  <header class="site-chrome">
     <nav class="pill-nav" aria-label="Primary">
       <a href="#top" class="is-active" data-nav>Home</a>
       <a href="#about" data-nav>About</a>
       <a href="#contact" data-nav>Contact</a>
     </nav>
-
-    <button class="motion-toggle" id="motionToggle" type="button" role="switch" aria-checked="true" aria-label="Toggle motion effects">
-      <span class="motion-toggle-knob"></span>
-    </button>
   </header>
+
+  <button class="motion-toggle" id="motionToggle" type="button" role="switch" aria-checked="true" aria-label="Toggle motion effects">
+    <span class="motion-toggle-knob"></span>
+  </button>
 
   <div class="rail rail-top-right" aria-hidden="true">
     <p>ROS2 &middot; TELEOP &middot; EDGE AI</p>
@@ -54,7 +57,7 @@
   <main id="top">
     <section class="hero" id="hero">
       <div class="hero-inner">
-        <canvas id="heroCanvas" aria-hidden="true"></canvas>
+        <canvas id="heroCanvas" role="img" aria-label="Portrait of Kamil Szwed"></canvas>
         <noscript>
           <img class="hero-fallback" src="assets/portrait.jpg" alt="Portrait of Kamil Szwed" />
         </noscript>
@@ -218,6 +221,8 @@
     <!-- ===== Marquee ===== -->
     <div class="marquee" aria-hidden="true">
       <div class="marquee-track">
+        <span>UNITREE G1 &mdash; GO2 &mdash; B2 &mdash; ROS2 &mdash; WEBRTC &mdash; VISION PRO &mdash; JETSON ORIN &mdash; SLAM &mdash; ISAAC SIM &mdash; CYCLONEDDS &mdash;&nbsp;</span>
+        <span>UNITREE G1 &mdash; GO2 &mdash; B2 &mdash; ROS2 &mdash; WEBRTC &mdash; VISION PRO &mdash; JETSON ORIN &mdash; SLAM &mdash; ISAAC SIM &mdash; CYCLONEDDS &mdash;&nbsp;</span>
         <span>UNITREE G1 &mdash; GO2 &mdash; B2 &mdash; ROS2 &mdash; WEBRTC &mdash; VISION PRO &mdash; JETSON ORIN &mdash; SLAM &mdash; ISAAC SIM &mdash; CYCLONEDDS &mdash;&nbsp;</span>
         <span>UNITREE G1 &mdash; GO2 &mdash; B2 &mdash; ROS2 &mdash; WEBRTC &mdash; VISION PRO &mdash; JETSON ORIN &mdash; SLAM &mdash; ISAAC SIM &mdash; CYCLONEDDS &mdash;&nbsp;</span>
       </div>
