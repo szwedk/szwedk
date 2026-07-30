@@ -1,5 +1,9 @@
 name: Deploy portfolio to GitHub Pages
 
+# Publishes docs/ to the gh-pages branch, which GitHub Pages serves.
+# (The Actions-native Pages flow can't create the Pages site with the
+# default workflow token, but pushing gh-pages auto-enables it.)
+
 on:
   push:
     branches: [main]
@@ -9,9 +13,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages
@@ -20,24 +22,12 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-        with:
-          # creates/enables the Pages site on first run
-          enablement: true
-
-      - name: Upload site
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs
-
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Publish docs/ to gh-pages
+        run: |
+          set -euo pipefail
+          COMMIT=$(git commit-tree -m "Deploy site from ${GITHUB_SHA::7}" "${GITHUB_SHA}:docs")
+          git push --force origin "${COMMIT}:refs/heads/gh-pages"
