@@ -29,6 +29,7 @@
     <nav class="pill-nav" aria-label="Primary">
       <a href="#top" class="is-active" data-nav>Home</a>
       <a href="#about" data-nav>About</a>
+      <a href="#work" data-nav>Work</a>
       <a href="#contact" data-nav>Contact</a>
     </nav>
   </header>
@@ -153,69 +154,272 @@
       </ol>
     </section>
 
-    <!-- ===== Work ===== -->
-    <section class="work" aria-label="What I do">
+    <!-- ===== Work =====
+         Each row: .work-summary (button, high level) + .work-detail
+         (sub-categories and projects). To add a project, add an <li>
+         to the right group; to add a field, copy a whole .work-row. -->
+    <section class="work" id="work" aria-label="What I do">
       <div class="work-head">
         <p class="eyebrow eyebrow-dark"><span>WHAT I DO</span></p>
         <h2 class="work-title">Robots to <em>weddings.</em></h2>
+        <p class="work-hint">Six trades &mdash; open any row for the full picture.</p>
       </div>
       <ol class="work-list">
-        <li class="work-row">
-          <span class="work-num">01</span>
-          <div class="work-body">
-            <h3>Robotics Engineering</h3>
-            <p>The day job &mdash; Unitree G1, Go2, and B2 in production. ROS2,
-              VR teleoperation over WebRTC, autonomous patrol, edge AI on
-              Jetson Orin.</p>
+
+        <li class="work-row is-open">
+          <button class="work-summary" type="button" aria-expanded="true">
+            <span class="work-num">01</span>
+            <span class="work-body">
+              <span class="work-row-title">Robotics Engineering</span>
+              <span class="work-row-sub">The day job &mdash; humanoids and quadrupeds
+                in production. ROS2, VR teleoperation, autonomy, edge AI.</span>
+            </span>
+            <span class="work-tag">G1</span>
+            <span class="work-toggle" aria-hidden="true">+</span>
+          </button>
+          <div class="work-detail">
+            <div class="work-detail-inner">
+              <div class="work-groups">
+                <div class="work-group">
+                  <h4>At Unitree-RoboStore</h4>
+                  <ul>
+                    <li class="proj">G1 humanoid commissioning &mdash; SDK2, ROS2, whole-body control for enterprise clients</li>
+                    <li class="proj">Inspire Hands &amp; BrainCo integration &mdash; dexterous manipulation on G1</li>
+                    <li>Field deployment &amp; support &mdash; classrooms, labs, and industry</li>
+                  </ul>
+                </div>
+                <div class="work-group">
+                  <h4>Teleoperation</h4>
+                  <ul>
+                    <li class="proj">VR whole-body teleop &mdash; Apple Vision Pro, Quest, and Pico over WebRTC</li>
+                    <li>Real-time motor-command bridge to the G1</li>
+                  </ul>
+                </div>
+                <div class="work-group">
+                  <h4>Autonomy &amp; Patrol</h4>
+                  <ul>
+                    <li class="proj">Autonomous patrol on Go2 / B2 &mdash; SLAM, Nav2, LiDAR mapping</li>
+                    <li>Edge AI inference on Jetson Orin &mdash; OpenCV, Isaac Sim</li>
+                  </ul>
+                </div>
+                <div class="work-group">
+                  <h4>Infrastructure</h4>
+                  <ul>
+                    <li>Dockerized ROS2 stacks &middot; CycloneDDS tuning</li>
+                    <li>MQTT telemetry &middot; AWS cloud sync &middot; OTA updates</li>
+                    <li>RUTM50 5G field networking</li>
+                  </ul>
+                </div>
+                <div class="work-group">
+                  <h4>Outreach</h4>
+                  <ul>
+                    <li class="proj">STEM demos &mdash; brought a G1 humanoid and robot dog back to my own high school</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
-          <span class="work-tag">G1</span>
         </li>
+
         <li class="work-row">
-          <span class="work-num">02</span>
-          <div class="work-body">
-            <h3>Websites</h3>
-            <p>Design and build &mdash; portfolios, landing pages, storefronts.
-              Fast, modern, and made to move. This site is the sample.</p>
+          <button class="work-summary" type="button" aria-expanded="false">
+            <span class="work-num">02</span>
+            <span class="work-body">
+              <span class="work-row-title">Websites</span>
+              <span class="work-row-sub">Design and build &mdash; portfolios, landing
+                pages, storefronts. Fast, modern, and made to move.</span>
+            </span>
+            <span class="work-tag">Web</span>
+            <span class="work-toggle" aria-hidden="true">+</span>
+          </button>
+          <div class="work-detail">
+            <div class="work-detail-inner">
+              <div class="work-groups">
+                <div class="work-group">
+                  <h4>Design</h4>
+                  <ul>
+                    <li>Art direction, typography, and layout &mdash; built around your content, not a template</li>
+                    <li>Motion design &mdash; scroll effects, transitions, micro-interactions</li>
+                  </ul>
+                </div>
+                <div class="work-group">
+                  <h4>Build</h4>
+                  <ul>
+                    <li>Landing pages &amp; portfolios</li>
+                    <li>Storefronts &amp; e-commerce</li>
+                    <li>Hand-written code &mdash; fast to load, easy to maintain</li>
+                  </ul>
+                </div>
+                <div class="work-group">
+                  <h4>Proof</h4>
+                  <ul>
+                    <li class="proj">This site &mdash; scroll-driven canvas particles, smooth scroll, zero frameworks</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
-          <span class="work-tag">Web</span>
         </li>
+
         <li class="work-row">
-          <span class="work-num">03</span>
-          <div class="work-body">
-            <h3>Apps &amp; Software</h3>
-            <p>Full-stack product work &mdash; from first sketch to shipped,
-              front end to infrastructure.</p>
+          <button class="work-summary" type="button" aria-expanded="false">
+            <span class="work-num">03</span>
+            <span class="work-body">
+              <span class="work-row-title">Apps &amp; Software</span>
+              <span class="work-row-sub">Full-stack product work &mdash; from first
+                sketch to shipped, front end to infrastructure.</span>
+            </span>
+            <span class="work-tag">Apps</span>
+            <span class="work-toggle" aria-hidden="true">+</span>
+          </button>
+          <div class="work-detail">
+            <div class="work-detail-inner">
+              <div class="work-groups">
+                <div class="work-group">
+                  <h4>Products</h4>
+                  <ul>
+                    <li class="proj">IntelliPARK &mdash; campus-wide smart parking: computer-vision cameras, ultrasonic occupancy sensors, edge processing nodes</li>
+                  </ul>
+                </div>
+                <div class="work-group">
+                  <h4>Tooling &amp; Dashboards</h4>
+                  <ul>
+                    <li>Robot control panels &amp; telemetry dashboards</li>
+                    <li>Internal tools that replace spreadsheets</li>
+                  </ul>
+                </div>
+                <div class="work-group">
+                  <h4>Stack</h4>
+                  <ul>
+                    <li>Python &middot; C++ &middot; JavaScript</li>
+                    <li>Docker &middot; AWS &middot; Linux</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
-          <span class="work-tag">Apps</span>
         </li>
+
         <li class="work-row">
-          <span class="work-num">04</span>
-          <div class="work-body">
-            <h3>Photography</h3>
-            <p>Weddings, portraits, events &mdash; planned like an engineer,
-              shot like it matters, delivered on time.</p>
+          <button class="work-summary" type="button" aria-expanded="false">
+            <span class="work-num">04</span>
+            <span class="work-body">
+              <span class="work-row-title">Photography</span>
+              <span class="work-row-sub">Weddings, portraits, events &mdash; planned
+                like an engineer, shot like it matters.</span>
+            </span>
+            <span class="work-tag">Photo</span>
+            <span class="work-toggle" aria-hidden="true">+</span>
+          </button>
+          <div class="work-detail">
+            <div class="work-detail-inner">
+              <div class="work-groups">
+                <div class="work-group">
+                  <h4>Weddings</h4>
+                  <ul>
+                    <li>Full-day coverage &mdash; prep to last dance</li>
+                    <li>Shot lists and timelines planned in advance</li>
+                    <li>Edited galleries delivered on schedule</li>
+                  </ul>
+                </div>
+                <div class="work-group">
+                  <h4>Portraits</h4>
+                  <ul>
+                    <li>Headshots &amp; personal branding</li>
+                    <li>Couples &amp; families</li>
+                  </ul>
+                </div>
+                <div class="work-group">
+                  <h4>Events</h4>
+                  <ul>
+                    <li>Corporate events &amp; product launches</li>
+                    <li>Fast turnaround for social and press</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
-          <span class="work-tag">Photo</span>
         </li>
+
         <li class="work-row">
-          <span class="work-num">05</span>
-          <div class="work-body">
-            <h3>Marketing &amp; Brand</h3>
-            <p>Campaigns, content, and identity &mdash; plus the analytics to
-              prove they worked.</p>
+          <button class="work-summary" type="button" aria-expanded="false">
+            <span class="work-num">05</span>
+            <span class="work-body">
+              <span class="work-row-title">Marketing &amp; Brand</span>
+              <span class="work-row-sub">Campaigns, content, and identity &mdash;
+                plus the analytics to prove they worked.</span>
+            </span>
+            <span class="work-tag">Brand</span>
+            <span class="work-toggle" aria-hidden="true">+</span>
+          </button>
+          <div class="work-detail">
+            <div class="work-detail-inner">
+              <div class="work-groups">
+                <div class="work-group">
+                  <h4>Identity</h4>
+                  <ul>
+                    <li>Logos, type, and color systems</li>
+                    <li>Brand guidelines that people actually follow</li>
+                  </ul>
+                </div>
+                <div class="work-group">
+                  <h4>Content</h4>
+                  <ul>
+                    <li>Product photo &amp; video &mdash; including robots that demo themselves</li>
+                    <li>Social content &amp; copywriting</li>
+                  </ul>
+                </div>
+                <div class="work-group">
+                  <h4>Campaigns</h4>
+                  <ul>
+                    <li>Launches, promotions, and email</li>
+                    <li>Analytics and reporting &mdash; what worked, what didn&rsquo;t, what&rsquo;s next</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
-          <span class="work-tag">Brand</span>
         </li>
+
         <li class="work-row">
-          <span class="work-num">06</span>
-          <div class="work-body">
-            <h3>Custom Hardware</h3>
-            <p>3D-printed products, ESP32 firmware, sensor rigs &mdash; a line
-              of accessories for Unitree platforms, and one-offs when the job
-              needs a physical thing.</p>
+          <button class="work-summary" type="button" aria-expanded="false">
+            <span class="work-num">06</span>
+            <span class="work-body">
+              <span class="work-row-title">Custom Hardware</span>
+              <span class="work-row-sub">3D-printed products, firmware, sensor rigs
+                &mdash; when the job needs a physical thing.</span>
+            </span>
+            <span class="work-tag">Maker</span>
+            <span class="work-toggle" aria-hidden="true">+</span>
+          </button>
+          <div class="work-detail">
+            <div class="work-detail-inner">
+              <div class="work-groups">
+                <div class="work-group">
+                  <h4>Product Line</h4>
+                  <ul>
+                    <li class="proj">3D-printed accessories for Unitree robots &mdash; sensor mounts, camera brackets, protective covers, joint guards</li>
+                  </ul>
+                </div>
+                <div class="work-group">
+                  <h4>Electronics</h4>
+                  <ul>
+                    <li>ESP32 firmware &amp; sensor integration</li>
+                    <li>Raspberry Pi &amp; Jetson builds</li>
+                  </ul>
+                </div>
+                <div class="work-group">
+                  <h4>Prototyping</h4>
+                  <ul>
+                    <li>CAD &rarr; print &rarr; test &rarr; iterate</li>
+                    <li>One-offs and small runs</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
-          <span class="work-tag">Maker</span>
         </li>
+
       </ol>
     </section>
 

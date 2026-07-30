@@ -560,7 +560,7 @@
       a.classList.toggle('is-active', a.getAttribute('href') === hash);
     });
   }
-  [['#top', '.hero'], ['#about', '.manifesto'], ['#contact', '.contact']]
+  [['#top', '.hero'], ['#about', '.manifesto'], ['#work', '.work'], ['#contact', '.contact']]
     .forEach(function (pair) {
       ScrollTrigger.create({
         trigger: pair[1],
@@ -584,6 +584,26 @@
       target.setAttribute('tabindex', '-1');
       target.focus({ preventScroll: true });
     });
+  });
+
+  /* ============================================================
+     Work accordion — plain class toggle; CSS animates the height.
+     Row heights change the page length, so scroll positions are
+     re-measured once the transition settles.
+     ============================================================ */
+  document.querySelectorAll('.work-row').forEach(function (row) {
+    var btn = row.querySelector('.work-summary');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var open = row.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    var detail = row.querySelector('.work-detail');
+    if (detail) {
+      detail.addEventListener('transitionend', function (e) {
+        if (e.propertyName === 'grid-template-rows') ScrollTrigger.refresh();
+      });
+    }
   });
 
   /* ============================================================

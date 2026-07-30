@@ -421,31 +421,49 @@ em {
   letter-spacing: -0.035em;
   line-height: 1;
 }
+.work-hint {
+  margin-top: 18px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  opacity: 0.5;
+}
 .work-list { list-style: none; }
-.work-row {
+.work-row { border-top: 1px solid var(--hairline-dark); }
+.work-row:last-child { border-bottom: 1px solid var(--hairline-dark); }
+
+.work-summary {
   display: grid;
-  grid-template-columns: 64px 1fr auto;
+  grid-template-columns: 64px 1fr auto auto;
   gap: clamp(16px, 3vw, 48px);
   align-items: baseline;
+  width: 100%;
   padding: 34px 0 30px;
-  border-top: 1px solid var(--hairline-dark);
+  background: none;
+  border: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
   transition: background 0.3s ease, padding-left 0.3s ease;
 }
-.work-row:last-child { border-bottom: 1px solid var(--hairline-dark); }
-.work-row:hover { background: var(--paper-dim); padding-left: 14px; }
+.work-summary:hover { background: var(--paper-dim); padding-left: 14px; }
 .work-num {
   font-size: 11px;
   letter-spacing: 0.18em;
   opacity: 0.62;
   font-weight: 600;
 }
-.work-body h3 {
+.work-row-title {
+  display: block;
   font-size: clamp(1.25rem, 2.2vw, 1.8rem);
   font-weight: 500;
   letter-spacing: -0.02em;
   margin-bottom: 8px;
 }
-.work-body p {
+.work-row-sub {
+  display: block;
   font-size: 0.92rem;
   line-height: 1.6;
   color: var(--ink-soft);
@@ -460,6 +478,53 @@ em {
   border: 1px solid var(--hairline-dark);
   border-radius: 999px;
   white-space: nowrap;
+}
+.work-toggle {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1;
+  opacity: 0.5;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+}
+.work-row.is-open .work-toggle { transform: rotate(45deg); opacity: 0.9; }
+
+/* expandable detail — grid-rows trick animates height without JS */
+.work-detail {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.work-detail-inner { overflow: hidden; }
+.work-row.is-open .work-detail { grid-template-rows: 1fr; }
+.work-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+  gap: 28px 44px;
+  padding: 6px 0 42px 64px;
+}
+.work-group h4 {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  opacity: 0.55;
+  margin-bottom: 13px;
+}
+.work-group ul { list-style: none; }
+.work-group li {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  padding: 5px 0;
+  opacity: 0.9;
+}
+.work-group li.proj {
+  font-weight: 500;
+  color: var(--ink);
+}
+.work-group li.proj::before {
+  content: '\2192\00a0\00a0';
+  opacity: 0.45;
 }
 
 /* ============ Marquee ============ */
@@ -636,8 +701,9 @@ main:focus, section:focus, footer:focus { outline: none; }
   }
   .hero-headline h1, .hero-headline h2 { font-size: clamp(2.3rem, 9.5vw, 3.4rem); }
   .hero-sub { max-width: 34ch; }
-  .work-row { grid-template-columns: 40px 1fr; }
+  .work-summary { grid-template-columns: 40px 1fr auto; }
   .work-tag { display: none; }
+  .work-groups { padding-left: 0; }
   .brand-sub { display: none; }
 }
 
@@ -671,7 +737,9 @@ main:focus, section:focus, footer:focus { outline: none; }
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; }
   .rail { display: none; }
+  .work-detail, .work-toggle { transition: none; }
 }
+html.no-motion .work-detail, html.no-motion .work-toggle { transition: none; }
 
 /* ============ Print ============
    Collapse the pinned scroll spacers, drop the canvas and fixed chrome, and
@@ -727,4 +795,9 @@ main:focus, section:focus, footer:focus { outline: none; }
   .contact-fine { position: static; margin-top: 8mm; }
   .path, .work, .platforms { padding: 8mm 0; }
   .path-item, .work-row, .platform-card { break-inside: avoid; }
+  /* print everything the accordion holds */
+  .work-detail { grid-template-rows: 1fr !important; }
+  .work-toggle { display: none; }
+  .work-summary { padding: 5mm 0 3mm; }
+  .work-groups { padding-bottom: 6mm; }
 }
