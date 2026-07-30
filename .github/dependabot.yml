@@ -1,0 +1,7 @@
+# Keep GitHub Actions dependencies updated (and SHA pins refreshed).
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"

@@ -12,6 +12,10 @@ jobs:
       contents: write
 
     steps:
+      # NOTE: third-party action. For maximum supply-chain safety, pin to a
+      # full commit SHA instead of the mutable v3 tag:
+      #   uses: Platane/snk@<40-char-sha>  # v3
+      # (Resolve the SHA at https://github.com/Platane/snk/tags)
       - name: Generate snake SVGs
         uses: Platane/snk@v3
         with:
@@ -20,10 +24,19 @@ jobs:
             dist/github-snake.svg
             dist/github-snake-dark.svg?palette=github-dark
 
+      # Plain git plumbing instead of a third-party deploy action, so no
+      # external code ever receives the write token.
       - name: Deploy to output branch
-        uses: crazy-max/ghaction-github-pages@v3
-        with:
-          target_branch: output
-          build_dir: dist
+        run: |
+          set -euo pipefail
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cd dist
+          git init -q -b output
+          git add -A
+          git commit -q -m "Update snake animation"
+          git push --force \
+            "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
+            output:refs/heads/output
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
