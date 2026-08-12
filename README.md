@@ -4,13 +4,16 @@
 
 <!-- Animated Typing -->
 <a href="https://git.io/typing-svg">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1000&color=00D4FF&center=true&vCenter=true&multiline=false&repeat=true&width=860&height=35&lines=Head+of+Technology+%40+RoboStore;Robotics+Systems+Engineer+%26+Integrator;Unitree+G1+%7C+Go2+%7C+B2+%E2%80%94+Hardware+to+Full+Stack;ROS2+%7C+Teleoperation+%7C+Edge+AI+%7C+Autonomy;Enterprise+Robotics+Deployment+%26+Field+Support;Embodied+AI+%7C+VR+Control+%7C+Cloud+Robotics+Infrastructure" alt="Typing SVG"/>
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1000&color=00D4FF&center=true&vCenter=true&multiline=false&repeat=true&width=860&height=35&lines=Head+of+Technology+%40+RoboStore;Robotics+Systems+Engineer+%26+Integrator;Unitree+G1+%7C+Go2+%7C+B2+%E2%80%94+Hardware+to+Full+Stack;ROS2+%7C+Teleoperation+%7C+Edge+AI+%7C+Autonomy;Enterprise+Robotics+Deployment+%26+Field+Support;Embodied+AI+%7C+VR+Control+%7C+Cloud+Robotics+Infrastructure;Portfolio+at+kamilszwed.com" alt="Typing SVG"/>
 </a>
 
 <br/><br/>
 
 <!-- Social Badges -->
 <p>
+  <a href="https://kamilszwed.com">
+    <img src="https://img.shields.io/badge/kamilszwed.com-0B0B0C?style=for-the-badge&logo=googlechrome&logoColor=EFECE5" alt="Portfolio"/>
+  </a>
   <a href="https://www.linkedin.com/in/kamilszwed006">
     <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
   </a>
@@ -38,6 +41,32 @@
 
 ---
 <!-- CONTRIB:END -->
+
+## Portfolio
+
+<div align="center">
+
+<a href="https://kamilszwed.com">
+  <img src="https://img.shields.io/badge/kamilszwed.com-visit-EFECE5?style=for-the-badge&labelColor=0B0B0C&logo=googlechrome&logoColor=EFECE5" alt="kamilszwed.com"/>
+</a>
+
+<p><i>Hand-coded, no frameworks, no build step. A portrait that dissolves into fourteen thousand
+canvas particles, and interactive demos built on real robot data.</i></p>
+
+| Demo | What it does |
+|:-----|:-------------|
+| **Push the Humanoid** | Shove a line-drawn Unitree G1 and watch it recover: ankle strategy, hip strategy, then a capture-point step. Link lengths and joint limits from the real URDF |
+| **Gait Lab** | Quadruped gait explorer with live footfall diagrams, built on the Go2 URDF |
+| **IntelliPARK Sandbox** | The campus smart-parking platform, condensed into a live simulation with droppable camera nodes |
+| **The Contact Sheet** | A 35mm contact sheet with a hover loupe and a grease pencil for marking keepers |
+| **Wordmark Reprint** | Press and hold to reprint the name slicer-style: isolines, infill, layer by layer |
+| **The Brief** | Five questions that compose a structured project brief into an email |
+
+<sub>There is also a quadruped living somewhere on the home page. Type <code>go2</code> and it will come out.</sub>
+
+</div>
+
+---
 
 ## About
 
@@ -402,6 +431,9 @@ Cloud & DevOps ─────────────────────�
 <p><i>Building enterprise robotics infrastructure — from humanoid deployment to autonomous field operations.<br/>
 Available for collaborations in robotics systems integration, teleoperation, enterprise autonomy, and embodied AI.</i></p>
 
+<a href="https://kamilszwed.com">
+  <img src="https://img.shields.io/badge/-kamilszwed.com-0B0B0C?style=for-the-badge&logo=googlechrome&logoColor=EFECE5" alt="Portfolio"/>
+</a>
 <a href="https://www.linkedin.com/in/kamilszwed006">
   <img src="https://img.shields.io/badge/-LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
 </a>
