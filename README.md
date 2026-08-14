@@ -50,8 +50,7 @@
   <img src="https://img.shields.io/badge/kamilszwed.com-visit-EFECE5?style=for-the-badge&labelColor=0B0B0C&logo=googlechrome&logoColor=EFECE5" alt="kamilszwed.com"/>
 </a>
 
-<p><i>Hand-coded, no frameworks, no build step. A portrait that dissolves into fourteen thousand
-canvas particles, and interactive demos built on real robot data.</i></p>
+
 
 | Demo | What it does |
 |:-----|:-------------|
