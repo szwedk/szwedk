@@ -54,12 +54,11 @@
 
 | Demo | What it does |
 |:-----|:-------------|
-| **Push the Humanoid** | Shove a line-drawn Unitree G1 and watch it recover: ankle strategy, hip strategy, then a capture-point step. Link lengths and joint limits from the real URDF |
-| **Gait Lab** | Quadruped gait explorer with live footfall diagrams, built on the Go2 URDF |
-| **IntelliPARK Sandbox** | The campus smart-parking platform, condensed into a live simulation with droppable camera nodes |
-| **The Contact Sheet** | A 35mm contact sheet with a hover loupe and a grease pencil for marking keepers |
-| **Wordmark Reprint** | Press and hold to reprint the name slicer-style: isolines, infill, layer by layer |
-| **The Brief** | Five questions that compose a structured project brief into an email |
+| **Push the Humanoid** | Shove a line-drawn Unitree G1 and watch it recover |
+| **Gait Lab** | Quadruped gait explorer built on the Go2 URDF |
+| **IntelliPARK Sandbox** | The campus smart parking platform simulation  |
+| **Wordmark Reprint** | Press and hold to reprint the name slicer-style: layer by layer |
+| ** Brief** | Five questions that compose a structured project brief into an email |
 
 <sub>There is also a quadruped living somewhere on the home page. Type <code>go2</code> and it will come out.</sub>
 
@@ -69,7 +68,7 @@
 
 ## About
 
-> **Head of Technology at [RoboStore](https://robostore.com)** — Robotics systems engineer and enterprise integrator deploying humanoid robots, quadrupeds, and autonomous platforms in production. Deep expertise in **ROS2**, **teleoperation**, **VR robotics**, **edge AI**, and **cloud-connected robotics infrastructure**. Operating at the boundary of hardware, software, and real-world field deployment.
+> **Head of Technology at [RoboStore](https://robostore.com)** — Robotics systems engineer and enterprise integrator deploying humanoid robots, quadrupeds, and autonomous platforms in production. Deep expertise in **teleoperation**, **VR robotics**, **edge AI**, and **cloud-connected robotics infrastructure**. Operating at  hardware, software, and real-world field deployment.
 
 - **Head of Technology** at **[RoboStore](https://robostore.com)** — leading robotics stack development, enterprise integrations, and field deployments of humanoid and quadruped platforms
 - Building and deploying **Unitree G1 / Go2 / B2** — from low-level SDK2 control to full autonomy, teleoperation, and enterprise configuration pipelines
