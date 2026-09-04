@@ -386,27 +386,6 @@ Cloud & DevOps ─────────────────────�
 
 ## GitHub Stats
 
-<div align="center">
-
-<a href="https://github.com/szwedk?tab=repositories">
-  <img src="https://github-readme-stats.vercel.app/api?username=szwedk&theme=tokyonight&show_icons=true&count_private=true&hide_border=true" width="49%" alt="GitHub Stats"/>
-</a>
-<a href="https://github.com/szwedk?tab=repositories">
-  <img src="https://streak-stats.demolab.com/?user=szwedk&theme=tokyonight&hide_border=true" width="49%" alt="GitHub Streak"/>
-</a>
-
-<br/>
-
-<a href="https://github.com/szwedk?tab=repositories">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=szwedk&theme=tokyo-night&hide_border=true&area=true&custom_title=Contribution%20Graph%20—%20All%20Repositories" width="98%" alt="Activity Graph"/>
-</a>
-
-<br/>
-
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=szwedk&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true&layout=compact&langs_count=10" width="40%" alt="Top Languages"/>
-
-</div>
-
 ---
 
 <div align="center">
