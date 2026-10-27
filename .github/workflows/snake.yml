@@ -31,6 +31,9 @@ jobs:
           set -euo pipefail
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # The snk container runs as root, so dist/ comes back root-owned and
+          # git init under the runner user fails with EACCES. Reclaim it first.
+          sudo chown -R "$(id -u):$(id -g)" dist
           cd dist
           git init -q -b output
           git add -A
